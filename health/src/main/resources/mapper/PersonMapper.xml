@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hzy.dao.PersonMapper">
+  <resultMap id="BaseResultMap" type="hzy.entity.Person">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="age" jdbcType="SMALLINT" property="age" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, sex, phone, age
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from person
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hzy.entity.Person">
+    insert into person (id, name, sex, 
+      phone, age)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, 
+      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="hzy.entity.Person">
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.Person">
+    update person
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hzy.entity.Person">
+    update person
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=SMALLINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      age = #{age,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

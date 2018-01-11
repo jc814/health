@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hzy.dao.DoctorMapper">
+  <resultMap id="BaseResultMap" type="hzy.entity.Doctor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="age" jdbcType="SMALLINT" property="age" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, oid, name, sex, age, brief, phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hzy.entity.Doctor">
+    insert into doctor (id, oid, name, 
+      sex, age, brief, 
+      phone)
+    values (#{id,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=SMALLINT}, #{age,jdbcType=SMALLINT}, #{brief,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hzy.entity.Doctor">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="oid != null">
+        oid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="brief != null">
+        brief,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null">
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="brief != null">
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.Doctor">
+    update doctor
+    <set>
+      <if test="oid != null">
+        oid = #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="brief != null">
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hzy.entity.Doctor">
+    update doctor
+    set oid = #{oid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=SMALLINT},
+      age = #{age,jdbcType=SMALLINT},
+      brief = #{brief,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

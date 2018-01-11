@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 1.扫描serviceImpl -->
+    <context:component-scan base-package="hzy.serviceImpl"/>
+    <context:component-scan base-package="utils.RedisUtil"/>
+
+
+    <!-- 2.配制事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 3.配置事物注解 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 4.增强类 -->
+    <bean id="myLog" class="hzy.advice.mylog"></bean>
+
+    <!-- 5.配置增强类 -->
+    <aop:aspectj-autoproxy  proxy-target-class="true" />
+    <aop:config>
+        <aop:pointcut id="findUser" expression="execution(* hzy.serviceImpl.UserSerImpl.findUser(..))" />
+        <aop:pointcut id="findUserByName" expression="execution(* hzy.serviceImpl.UserSerImpl.findUserByName(..))" />
+        <aop:aspect ref="myLog">
+            <aop:before method="beforeRun" pointcut-ref="findUser"/>
+            <aop:after method="afterRun" pointcut-ref="findUser"/>
+            <aop:around method="aroundRun" pointcut-ref="findUserByName"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

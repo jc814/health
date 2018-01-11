@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 配置整合mybatis过程 -->
+    <!-- 1.加载数据库properties属性 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- 2.加载数据库连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 2.1 配置连接池属性 -->
+        <property name="driverClass" value="${jdbc.diver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 2.2 c3p0属性 -->
+        <property name="maxPoolSize" value="100"/>
+        <property name="minPoolSize" value="10"/>
+        <!-- 关闭连接不自动提交 -->
+        <property name="autoCommitOnClose" value="false"/>
+        <!-- 连接超时时间 -->
+        <property name="checkoutTimeout" value="30000"/>
+        <!-- 连接失败重试次数 -->
+        <property name="acquireRetryAttempts" value="2"/>
+        <!-- 回收超时的链接 -->
+        <!--<property name="unreturnedConnectionTimeout" value="30" />-->
+        <!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false -->
+        <property name="testConnectionOnCheckin" value="true" />
+        <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+        <property name="idleConnectionTestPeriod" value="18000" />
+    </bean>
+    <!-- 3. 配置sessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <!-- 扫描entity包 -->
+        <property name="typeAliasesPackage" value="hzy.entity"/>
+        <!-- 扫描mapper.xml -->
+        <property name="mapperLocations" value="classpath:mappper/*.xml"/>
+    </bean>
+    <!-- 4. 注入dao接口包 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!-- 注入sqlSessionFactory -->
+        <property name="basePackage" value="hzy.dao"/>
+    </bean>
+    <!-- 5.扫描dao -->
+    <context:component-scan base-package="hzy.dao"/>
+    
+</beans>

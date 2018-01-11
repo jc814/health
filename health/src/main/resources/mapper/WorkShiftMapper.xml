@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hzy.dao.WorkShiftMapper">
+  <resultMap id="BaseResultMap" type="hzy.entity.WorkShift">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mon" jdbcType="SMALLINT" property="mon" />
+    <result column="tue" jdbcType="SMALLINT" property="tue" />
+    <result column="wed" jdbcType="SMALLINT" property="wed" />
+    <result column="thu" jdbcType="SMALLINT" property="thu" />
+    <result column="fri" jdbcType="SMALLINT" property="fri" />
+    <result column="sat" jdbcType="SMALLINT" property="sat" />
+    <result column="sun" jdbcType="SMALLINT" property="sun" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, mon, tue, wed, thu, fri, sat, sun
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from workshift
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from workshift
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hzy.entity.WorkShift">
+    insert into workshift (id, name, mon, 
+      tue, wed, thu, fri, 
+      sat, sun)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mon,jdbcType=SMALLINT}, 
+      #{tue,jdbcType=SMALLINT}, #{wed,jdbcType=SMALLINT}, #{thu,jdbcType=SMALLINT}, #{fri,jdbcType=SMALLINT}, 
+      #{sat,jdbcType=SMALLINT}, #{sun,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="hzy.entity.WorkShift">
+    insert into workshift
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mon != null">
+        mon,
+      </if>
+      <if test="tue != null">
+        tue,
+      </if>
+      <if test="wed != null">
+        wed,
+      </if>
+      <if test="thu != null">
+        thu,
+      </if>
+      <if test="fri != null">
+        fri,
+      </if>
+      <if test="sat != null">
+        sat,
+      </if>
+      <if test="sun != null">
+        sun,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mon != null">
+        #{mon,jdbcType=SMALLINT},
+      </if>
+      <if test="tue != null">
+        #{tue,jdbcType=SMALLINT},
+      </if>
+      <if test="wed != null">
+        #{wed,jdbcType=SMALLINT},
+      </if>
+      <if test="thu != null">
+        #{thu,jdbcType=SMALLINT},
+      </if>
+      <if test="fri != null">
+        #{fri,jdbcType=SMALLINT},
+      </if>
+      <if test="sat != null">
+        #{sat,jdbcType=SMALLINT},
+      </if>
+      <if test="sun != null">
+        #{sun,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.WorkShift">
+    update workshift
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mon != null">
+        mon = #{mon,jdbcType=SMALLINT},
+      </if>
+      <if test="tue != null">
+        tue = #{tue,jdbcType=SMALLINT},
+      </if>
+      <if test="wed != null">
+        wed = #{wed,jdbcType=SMALLINT},
+      </if>
+      <if test="thu != null">
+        thu = #{thu,jdbcType=SMALLINT},
+      </if>
+      <if test="fri != null">
+        fri = #{fri,jdbcType=SMALLINT},
+      </if>
+      <if test="sat != null">
+        sat = #{sat,jdbcType=SMALLINT},
+      </if>
+      <if test="sun != null">
+        sun = #{sun,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hzy.entity.WorkShift">
+    update workshift
+    set name = #{name,jdbcType=VARCHAR},
+      mon = #{mon,jdbcType=SMALLINT},
+      tue = #{tue,jdbcType=SMALLINT},
+      wed = #{wed,jdbcType=SMALLINT},
+      thu = #{thu,jdbcType=SMALLINT},
+      fri = #{fri,jdbcType=SMALLINT},
+      sat = #{sat,jdbcType=SMALLINT},
+      sun = #{sun,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

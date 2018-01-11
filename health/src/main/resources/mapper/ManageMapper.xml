@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hzy.dao.ManageMapper">
+  <resultMap id="BaseResultMap" type="hzy.entity.Manage">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="did" jdbcType="INTEGER" property="did" />
+    <result column="d1" jdbcType="SMALLINT" property="d1" />
+    <result column="d2" jdbcType="SMALLINT" property="d2" />
+    <result column="d3" jdbcType="SMALLINT" property="d3" />
+    <result column="d4" jdbcType="SMALLINT" property="d4" />
+    <result column="d5" jdbcType="SMALLINT" property="d5" />
+    <result column="d6" jdbcType="SMALLINT" property="d6" />
+    <result column="d7" jdbcType="SMALLINT" property="d7" />
+    <result column="d8" jdbcType="SMALLINT" property="d8" />
+    <result column="d9" jdbcType="SMALLINT" property="d9" />
+    <result column="d10" jdbcType="SMALLINT" property="d10" />
+    <result column="d11" jdbcType="SMALLINT" property="d11" />
+    <result column="d12" jdbcType="SMALLINT" property="d12" />
+    <result column="d13" jdbcType="SMALLINT" property="d13" />
+    <result column="d14" jdbcType="SMALLINT" property="d14" />
+    <result column="d15" jdbcType="SMALLINT" property="d15" />
+    <result column="d16" jdbcType="SMALLINT" property="d16" />
+    <result column="d17" jdbcType="SMALLINT" property="d17" />
+    <result column="d18" jdbcType="SMALLINT" property="d18" />
+    <result column="d19" jdbcType="SMALLINT" property="d19" />
+    <result column="d20" jdbcType="SMALLINT" property="d20" />
+    <result column="d21" jdbcType="SMALLINT" property="d21" />
+    <result column="d22" jdbcType="SMALLINT" property="d22" />
+    <result column="d23" jdbcType="SMALLINT" property="d23" />
+    <result column="d24" jdbcType="SMALLINT" property="d24" />
+    <result column="d25" jdbcType="SMALLINT" property="d25" />
+    <result column="d26" jdbcType="SMALLINT" property="d26" />
+    <result column="d27" jdbcType="SMALLINT" property="d27" />
+    <result column="d28" jdbcType="SMALLINT" property="d28" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wid, did, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, 
+    d17, d18, d19, d20, d21, d22, d23, d24, d25, d26, d27, d28
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hzy.entity.Manage">
+    insert into manage (id, wid, did, 
+      d1, d2, d3, d4, 
+      d5, d6, d7, d8, 
+      d9, d10, d11, d12, 
+      d13, d14, d15, d16, 
+      d17, d18, d19, d20, 
+      d21, d22, d23, d24, 
+      d25, d26, d27, d28
+      )
+    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, 
+      #{d1,jdbcType=SMALLINT}, #{d2,jdbcType=SMALLINT}, #{d3,jdbcType=SMALLINT}, #{d4,jdbcType=SMALLINT}, 
+      #{d5,jdbcType=SMALLINT}, #{d6,jdbcType=SMALLINT}, #{d7,jdbcType=SMALLINT}, #{d8,jdbcType=SMALLINT}, 
+      #{d9,jdbcType=SMALLINT}, #{d10,jdbcType=SMALLINT}, #{d11,jdbcType=SMALLINT}, #{d12,jdbcType=SMALLINT}, 
+      #{d13,jdbcType=SMALLINT}, #{d14,jdbcType=SMALLINT}, #{d15,jdbcType=SMALLINT}, #{d16,jdbcType=SMALLINT}, 
+      #{d17,jdbcType=SMALLINT}, #{d18,jdbcType=SMALLINT}, #{d19,jdbcType=SMALLINT}, #{d20,jdbcType=SMALLINT}, 
+      #{d21,jdbcType=SMALLINT}, #{d22,jdbcType=SMALLINT}, #{d23,jdbcType=SMALLINT}, #{d24,jdbcType=SMALLINT}, 
+      #{d25,jdbcType=SMALLINT}, #{d26,jdbcType=SMALLINT}, #{d27,jdbcType=SMALLINT}, #{d28,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hzy.entity.Manage">
+    insert into manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+      <if test="did != null">
+        did,
+      </if>
+      <if test="d1 != null">
+        d1,
+      </if>
+      <if test="d2 != null">
+        d2,
+      </if>
+      <if test="d3 != null">
+        d3,
+      </if>
+      <if test="d4 != null">
+        d4,
+      </if>
+      <if test="d5 != null">
+        d5,
+      </if>
+      <if test="d6 != null">
+        d6,
+      </if>
+      <if test="d7 != null">
+        d7,
+      </if>
+      <if test="d8 != null">
+        d8,
+      </if>
+      <if test="d9 != null">
+        d9,
+      </if>
+      <if test="d10 != null">
+        d10,
+      </if>
+      <if test="d11 != null">
+        d11,
+      </if>
+      <if test="d12 != null">
+        d12,
+      </if>
+      <if test="d13 != null">
+        d13,
+      </if>
+      <if test="d14 != null">
+        d14,
+      </if>
+      <if test="d15 != null">
+        d15,
+      </if>
+      <if test="d16 != null">
+        d16,
+      </if>
+      <if test="d17 != null">
+        d17,
+      </if>
+      <if test="d18 != null">
+        d18,
+      </if>
+      <if test="d19 != null">
+        d19,
+      </if>
+      <if test="d20 != null">
+        d20,
+      </if>
+      <if test="d21 != null">
+        d21,
+      </if>
+      <if test="d22 != null">
+        d22,
+      </if>
+      <if test="d23 != null">
+        d23,
+      </if>
+      <if test="d24 != null">
+        d24,
+      </if>
+      <if test="d25 != null">
+        d25,
+      </if>
+      <if test="d26 != null">
+        d26,
+      </if>
+      <if test="d27 != null">
+        d27,
+      </if>
+      <if test="d28 != null">
+        d28,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="d1 != null">
+        #{d1,jdbcType=SMALLINT},
+      </if>
+      <if test="d2 != null">
+        #{d2,jdbcType=SMALLINT},
+      </if>
+      <if test="d3 != null">
+        #{d3,jdbcType=SMALLINT},
+      </if>
+      <if test="d4 != null">
+        #{d4,jdbcType=SMALLINT},
+      </if>
+      <if test="d5 != null">
+        #{d5,jdbcType=SMALLINT},
+      </if>
+      <if test="d6 != null">
+        #{d6,jdbcType=SMALLINT},
+      </if>
+      <if test="d7 != null">
+        #{d7,jdbcType=SMALLINT},
+      </if>
+      <if test="d8 != null">
+        #{d8,jdbcType=SMALLINT},
+      </if>
+      <if test="d9 != null">
+        #{d9,jdbcType=SMALLINT},
+      </if>
+      <if test="d10 != null">
+        #{d10,jdbcType=SMALLINT},
+      </if>
+      <if test="d11 != null">
+        #{d11,jdbcType=SMALLINT},
+      </if>
+      <if test="d12 != null">
+        #{d12,jdbcType=SMALLINT},
+      </if>
+      <if test="d13 != null">
+        #{d13,jdbcType=SMALLINT},
+      </if>
+      <if test="d14 != null">
+        #{d14,jdbcType=SMALLINT},
+      </if>
+      <if test="d15 != null">
+        #{d15,jdbcType=SMALLINT},
+      </if>
+      <if test="d16 != null">
+        #{d16,jdbcType=SMALLINT},
+      </if>
+      <if test="d17 != null">
+        #{d17,jdbcType=SMALLINT},
+      </if>
+      <if test="d18 != null">
+        #{d18,jdbcType=SMALLINT},
+      </if>
+      <if test="d19 != null">
+        #{d19,jdbcType=SMALLINT},
+      </if>
+      <if test="d20 != null">
+        #{d20,jdbcType=SMALLINT},
+      </if>
+      <if test="d21 != null">
+        #{d21,jdbcType=SMALLINT},
+      </if>
+      <if test="d22 != null">
+        #{d22,jdbcType=SMALLINT},
+      </if>
+      <if test="d23 != null">
+        #{d23,jdbcType=SMALLINT},
+      </if>
+      <if test="d24 != null">
+        #{d24,jdbcType=SMALLINT},
+      </if>
+      <if test="d25 != null">
+        #{d25,jdbcType=SMALLINT},
+      </if>
+      <if test="d26 != null">
+        #{d26,jdbcType=SMALLINT},
+      </if>
+      <if test="d27 != null">
+        #{d27,jdbcType=SMALLINT},
+      </if>
+      <if test="d28 != null">
+        #{d28,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.Manage">
+    update manage
+    <set>
+      <if test="wid != null">
+        wid = #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null">
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="d1 != null">
+        d1 = #{d1,jdbcType=SMALLINT},
+      </if>
+      <if test="d2 != null">
+        d2 = #{d2,jdbcType=SMALLINT},
+      </if>
+      <if test="d3 != null">
+        d3 = #{d3,jdbcType=SMALLINT},
+      </if>
+      <if test="d4 != null">
+        d4 = #{d4,jdbcType=SMALLINT},
+      </if>
+      <if test="d5 != null">
+        d5 = #{d5,jdbcType=SMALLINT},
+      </if>
+      <if test="d6 != null">
+        d6 = #{d6,jdbcType=SMALLINT},
+      </if>
+      <if test="d7 != null">
+        d7 = #{d7,jdbcType=SMALLINT},
+      </if>
+      <if test="d8 != null">
+        d8 = #{d8,jdbcType=SMALLINT},
+      </if>
+      <if test="d9 != null">
+        d9 = #{d9,jdbcType=SMALLINT},
+      </if>
+      <if test="d10 != null">
+        d10 = #{d10,jdbcType=SMALLINT},
+      </if>
+      <if test="d11 != null">
+        d11 = #{d11,jdbcType=SMALLINT},
+      </if>
+      <if test="d12 != null">
+        d12 = #{d12,jdbcType=SMALLINT},
+      </if>
+      <if test="d13 != null">
+        d13 = #{d13,jdbcType=SMALLINT},
+      </if>
+      <if test="d14 != null">
+        d14 = #{d14,jdbcType=SMALLINT},
+      </if>
+      <if test="d15 != null">
+        d15 = #{d15,jdbcType=SMALLINT},
+      </if>
+      <if test="d16 != null">
+        d16 = #{d16,jdbcType=SMALLINT},
+      </if>
+      <if test="d17 != null">
+        d17 = #{d17,jdbcType=SMALLINT},
+      </if>
+      <if test="d18 != null">
+        d18 = #{d18,jdbcType=SMALLINT},
+      </if>
+      <if test="d19 != null">
+        d19 = #{d19,jdbcType=SMALLINT},
+      </if>
+      <if test="d20 != null">
+        d20 = #{d20,jdbcType=SMALLINT},
+      </if>
+      <if test="d21 != null">
+        d21 = #{d21,jdbcType=SMALLINT},
+      </if>
+      <if test="d22 != null">
+        d22 = #{d22,jdbcType=SMALLINT},
+      </if>
+      <if test="d23 != null">
+        d23 = #{d23,jdbcType=SMALLINT},
+      </if>
+      <if test="d24 != null">
+        d24 = #{d24,jdbcType=SMALLINT},
+      </if>
+      <if test="d25 != null">
+        d25 = #{d25,jdbcType=SMALLINT},
+      </if>
+      <if test="d26 != null">
+        d26 = #{d26,jdbcType=SMALLINT},
+      </if>
+      <if test="d27 != null">
+        d27 = #{d27,jdbcType=SMALLINT},
+      </if>
+      <if test="d28 != null">
+        d28 = #{d28,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hzy.entity.Manage">
+    update manage
+    set wid = #{wid,jdbcType=INTEGER},
+      did = #{did,jdbcType=INTEGER},
+      d1 = #{d1,jdbcType=SMALLINT},
+      d2 = #{d2,jdbcType=SMALLINT},
+      d3 = #{d3,jdbcType=SMALLINT},
+      d4 = #{d4,jdbcType=SMALLINT},
+      d5 = #{d5,jdbcType=SMALLINT},
+      d6 = #{d6,jdbcType=SMALLINT},
+      d7 = #{d7,jdbcType=SMALLINT},
+      d8 = #{d8,jdbcType=SMALLINT},
+      d9 = #{d9,jdbcType=SMALLINT},
+      d10 = #{d10,jdbcType=SMALLINT},
+      d11 = #{d11,jdbcType=SMALLINT},
+      d12 = #{d12,jdbcType=SMALLINT},
+      d13 = #{d13,jdbcType=SMALLINT},
+      d14 = #{d14,jdbcType=SMALLINT},
+      d15 = #{d15,jdbcType=SMALLINT},
+      d16 = #{d16,jdbcType=SMALLINT},
+      d17 = #{d17,jdbcType=SMALLINT},
+      d18 = #{d18,jdbcType=SMALLINT},
+      d19 = #{d19,jdbcType=SMALLINT},
+      d20 = #{d20,jdbcType=SMALLINT},
+      d21 = #{d21,jdbcType=SMALLINT},
+      d22 = #{d22,jdbcType=SMALLINT},
+      d23 = #{d23,jdbcType=SMALLINT},
+      d24 = #{d24,jdbcType=SMALLINT},
+      d25 = #{d25,jdbcType=SMALLINT},
+      d26 = #{d26,jdbcType=SMALLINT},
+      d27 = #{d27,jdbcType=SMALLINT},
+      d28 = #{d28,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

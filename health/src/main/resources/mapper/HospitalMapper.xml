@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hzy.dao.HospitalMapper">
+  <resultMap id="BaseResultMap" type="hzy.entity.Hospital">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="lng" jdbcType="INTEGER" property="lng" />
+    <result column="lat" jdbcType="INTEGER" property="lat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, phone, address, brief, lng, lat
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hospital
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hospital
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hzy.entity.Hospital">
+    insert into hospital (id, name, phone, 
+      address, brief, lng, 
+      lat)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, #{lng,jdbcType=INTEGER}, 
+      #{lat,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hzy.entity.Hospital">
+    insert into hospital
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="brief != null">
+        brief,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null">
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.Hospital">
+    update hospital
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null">
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hzy.entity.Hospital">
+    update hospital
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      brief = #{brief,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=INTEGER},
+      lat = #{lat,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
