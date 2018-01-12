@@ -28,6 +28,7 @@
     <bean id="myLog" class="hzy.advice.mylog"></bean>
 
     <!-- 5.配置增强类 -->
+    <!--
     <aop:aspectj-autoproxy  proxy-target-class="true" />
     <aop:config>
         <aop:pointcut id="findUser" expression="execution(* hzy.serviceImpl.UserSerImpl.findUser(..))" />
@@ -38,5 +39,5 @@
             <aop:around method="aroundRun" pointcut-ref="findUserByName"/>
         </aop:aspect>
     </aop:config>
-
+    -->
 </beans>
