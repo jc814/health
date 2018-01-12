@@ -38,7 +38,7 @@
         <!-- 扫描entity包 -->
         <property name="typeAliasesPackage" value="hzy.entity"/>
         <!-- 扫描mapper.xml -->
-        <property name="mapperLocations" value="classpath:mappper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
     <!-- 4. 注入dao接口包 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
