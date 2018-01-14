@@ -5,11 +5,11 @@ import java.util.Date;
 public class Bespeak {
     private Integer id;
 
-    private Integer pid;
+    private Long cardId;
 
     private Integer did;
 
-    private Date bespeaktime;
+    private Date bespeakTime;
 
     public Integer getId() {
         return id;
@@ -19,12 +19,12 @@ public class Bespeak {
         this.id = id;
     }
 
-    public Integer getPid() {
-        return pid;
+    public Long getCardId() {
+        return cardId;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setCardId(Long cardId) {
+        this.cardId = cardId;
     }
 
     public Integer getDid() {
@@ -35,11 +35,11 @@ public class Bespeak {
         this.did = did;
     }
 
-    public Date getBespeaktime() {
-        return bespeaktime;
+    public Date getBespeakTime() {
+        return bespeakTime;
     }
 
-    public void setBespeaktime(Date bespeaktime) {
-        this.bespeaktime = bespeaktime;
+    public void setBespeakTime(Date bespeakTime) {
+        this.bespeakTime = bespeakTime;
     }
 }

@@ -5,6 +5,8 @@ public class Manage {
 
     private Integer wid;
 
+    private String worshiftName;
+
     private Integer did;
 
     private Short d1;
@@ -77,6 +79,14 @@ public class Manage {
 
     public void setWid(Integer wid) {
         this.wid = wid;
+    }
+
+    public String getWorshiftName() {
+        return worshiftName;
+    }
+
+    public void setWorshiftName(String worshiftName) {
+        this.worshiftName = worshiftName == null ? null : worshiftName.trim();
     }
 
     public Integer getDid() {

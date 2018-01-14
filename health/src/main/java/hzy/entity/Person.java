@@ -11,6 +11,14 @@ public class Person {
 
     private Short age;
 
+    private String photo;
+
+    private String password;
+
+    private Integer type;
+
+    private Long cardId;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +57,37 @@ public class Person {
 
     public void setAge(Short age) {
         this.age = age;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo == null ? null : photo.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Long getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(Long cardId) {
+        this.cardId = cardId;
     }
 }
