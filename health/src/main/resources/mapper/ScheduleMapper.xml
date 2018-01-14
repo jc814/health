@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="hzy.entity.Schedule">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="wid" jdbcType="INTEGER" property="wid" />
-    <result column="startTime" jdbcType="TIME" property="starttime" />
-    <result column="endTime" jdbcType="TIME" property="endtime" />
+    <result column="start_time" jdbcType="TIME" property="startTime" />
+    <result column="end_time" jdbcType="TIME" property="endTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, wid, startTime, endTime
+    id, wid, start_time, end_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,10 +21,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="hzy.entity.Schedule">
-    insert into schedule (id, wid, startTime, 
-      endTime)
-    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{starttime,jdbcType=TIME}, 
-      #{endtime,jdbcType=TIME})
+    insert into schedule (id, wid, start_time, 
+      end_time)
+    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{startTime,jdbcType=TIME}, 
+      #{endTime,jdbcType=TIME})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Schedule">
     insert into schedule
@@ -35,11 +35,11 @@
       <if test="wid != null">
         wid,
       </if>
-      <if test="starttime != null">
-        startTime,
+      <if test="startTime != null">
+        start_time,
       </if>
-      <if test="endtime != null">
-        endTime,
+      <if test="endTime != null">
+        end_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -49,11 +49,11 @@
       <if test="wid != null">
         #{wid,jdbcType=INTEGER},
       </if>
-      <if test="starttime != null">
-        #{starttime,jdbcType=TIME},
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
       </if>
-      <if test="endtime != null">
-        #{endtime,jdbcType=TIME},
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIME},
       </if>
     </trim>
   </insert>
@@ -63,11 +63,11 @@
       <if test="wid != null">
         wid = #{wid,jdbcType=INTEGER},
       </if>
-      <if test="starttime != null">
-        startTime = #{starttime,jdbcType=TIME},
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIME},
       </if>
-      <if test="endtime != null">
-        endTime = #{endtime,jdbcType=TIME},
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIME},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -75,8 +75,8 @@
   <update id="updateByPrimaryKey" parameterType="hzy.entity.Schedule">
     update schedule
     set wid = #{wid,jdbcType=INTEGER},
-      startTime = #{starttime,jdbcType=TIME},
-      endTime = #{endtime,jdbcType=TIME}
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

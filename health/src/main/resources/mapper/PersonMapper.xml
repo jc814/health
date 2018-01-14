@@ -7,9 +7,13 @@
     <result column="sex" jdbcType="SMALLINT" property="sex" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="age" jdbcType="SMALLINT" property="age" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="card_id" jdbcType="BIGINT" property="cardId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, sex, phone, age
+    id, name, sex, phone, age, photo, password, type, card_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +27,13 @@
   </delete>
   <insert id="insert" parameterType="hzy.entity.Person">
     insert into person (id, name, sex, 
-      phone, age)
+      phone, age, photo, 
+      password, type, card_id
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, 
-      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT})
+      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{photo,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{cardId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Person">
     insert into person
@@ -45,6 +53,18 @@
       <if test="age != null">
         age,
       </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -61,6 +81,18 @@
       </if>
       <if test="age != null">
         #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -79,6 +111,18 @@
       <if test="age != null">
         age = #{age,jdbcType=SMALLINT},
       </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -87,7 +131,11 @@
     set name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=SMALLINT},
       phone = #{phone,jdbcType=VARCHAR},
-      age = #{age,jdbcType=SMALLINT}
+      age = #{age,jdbcType=SMALLINT},
+      photo = #{photo,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      card_id = #{cardId,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
