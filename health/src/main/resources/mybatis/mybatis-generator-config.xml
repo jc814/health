@@ -93,5 +93,10 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>
+        <table schema="health" tableName="log"
+               domainObjectName="Log" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
     </context>
 </generatorConfiguration>
