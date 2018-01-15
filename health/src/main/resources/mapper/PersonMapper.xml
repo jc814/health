@@ -9,11 +9,10 @@
     <result column="age" jdbcType="SMALLINT" property="age" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="card_id" jdbcType="BIGINT" property="cardId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, sex, phone, age, photo, password, type, card_id
+    id, name, sex, phone, age, photo, password, card_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,12 +27,10 @@
   <insert id="insert" parameterType="hzy.entity.Person">
     insert into person (id, name, sex, 
       phone, age, photo, 
-      password, type, card_id
-      )
+      password, card_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, 
       #{phone,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{photo,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{cardId,jdbcType=BIGINT}
-      )
+      #{password,jdbcType=VARCHAR}, #{cardId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Person">
     insert into person
@@ -58,9 +55,6 @@
       </if>
       <if test="password != null">
         password,
-      </if>
-      <if test="type != null">
-        type,
       </if>
       <if test="cardId != null">
         card_id,
@@ -88,9 +82,6 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
       <if test="cardId != null">
         #{cardId,jdbcType=BIGINT},
       </if>
@@ -117,9 +108,6 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
-      </if>
       <if test="cardId != null">
         card_id = #{cardId,jdbcType=BIGINT},
       </if>
@@ -134,7 +122,6 @@
       age = #{age,jdbcType=SMALLINT},
       photo = #{photo,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
       card_id = #{cardId,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -47,18 +47,18 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table schema="health" tableName="bespeak"
+        <!--<table schema="health" tableName="bespeak"
                domainObjectName="Bespeak" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
+               enableUpdateByExample="false">-->
             <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
                 是否生成 example类   -->
             <!-- 忽略列，不生成bean 字段 -->
             <!--<ignoreColumn column="FRED" />-->
             <!-- 指定列的java数据类型 -->
             <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
-        </table>
-        <table schema="health" tableName="doctor"
+        <!--</table>-->
+        <!--<table schema="health" tableName="doctor"
                domainObjectName="Doctor" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
@@ -83,11 +83,6 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>
-        <table schema="health" tableName="person"
-               domainObjectName="Person" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
         <table schema="health" tableName="schedule"
                domainObjectName="Schedule" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
@@ -95,6 +90,16 @@
         </table>
         <table schema="health" tableName="log"
                domainObjectName="Log" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>-->
+        <table schema="health" tableName="admin"
+               domainObjectName="Admin" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        <table schema="health" tableName="person"
+               domainObjectName="Person" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>

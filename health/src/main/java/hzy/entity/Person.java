@@ -15,8 +15,6 @@ public class Person {
 
     private String password;
 
-    private Integer type;
-
     private Long cardId;
 
     public Integer getId() {
@@ -73,14 +71,6 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Long getCardId() {
