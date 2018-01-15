@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.WorkShift;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface WorkShiftMapper {
     int deleteByPrimaryKey(Integer id);
 

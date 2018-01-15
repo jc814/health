@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Doctor;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DoctorMapper {
     int deleteByPrimaryKey(Integer id);
 

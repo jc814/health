@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Office;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OfficeMapper {
     int deleteByPrimaryKey(Integer id);
 

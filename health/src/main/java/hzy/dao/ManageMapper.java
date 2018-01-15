@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Manage;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ManageMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Person;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PersonMapper {
     int deleteByPrimaryKey(Integer id);
 

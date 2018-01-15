@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Schedule;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ScheduleMapper {
     int deleteByPrimaryKey(Integer id);
 

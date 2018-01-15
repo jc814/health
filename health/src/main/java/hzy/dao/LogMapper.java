@@ -1,7 +1,9 @@
 package hzy.dao;
 
 import hzy.entity.Log;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LogMapper {
     int deleteByPrimaryKey(Integer id);
 
