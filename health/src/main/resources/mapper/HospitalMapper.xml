@@ -114,4 +114,9 @@
       lat = #{lat,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAllRecord" parameterType="hzy.entity.Hospital" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hospital
+  </select>
 </mapper>
