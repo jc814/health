@@ -2,18 +2,13 @@ package hzy.dao;
 
 import hzy.entity.WorkShift;
 import org.springframework.stereotype.Repository;
-
+/**
+ * WorkShiftMapper interface
+ *
+ * @author hzy
+ * @date 2018/01/13
+ */
 @Repository
-public interface WorkShiftMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface WorkShiftMapper extends BaseMapper<WorkShift>{
 
-    int insert(WorkShift record);
-
-    int insertSelective(WorkShift record);
-
-    WorkShift selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(WorkShift record);
-
-    int updateByPrimaryKey(WorkShift record);
 }

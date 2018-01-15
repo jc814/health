@@ -2,18 +2,13 @@ package hzy.dao;
 
 import hzy.entity.Office;
 import org.springframework.stereotype.Repository;
-
+/**
+ * OfficeMapper interface
+ *
+ * @author hzy
+ * @date 2018/01/13
+ */
 @Repository
-public interface OfficeMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface OfficeMapper extends BaseMapper<Office> {
 
-    int insert(Office record);
-
-    int insertSelective(Office record);
-
-    Office selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Office record);
-
-    int updateByPrimaryKey(Office record);
 }

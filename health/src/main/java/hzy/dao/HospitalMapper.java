@@ -2,18 +2,13 @@ package hzy.dao;
 
 import hzy.entity.Hospital;
 import org.springframework.stereotype.Repository;
-
+/**
+ * HospitalMapper interface
+ *
+ * @author hzy
+ * @date 2018/01/13
+ */
 @Repository
-public interface HospitalMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface HospitalMapper extends BaseMapper<Hospital> {
 
-    int insert(Hospital record);
-
-    int insertSelective(Hospital record);
-
-    Hospital selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Hospital record);
-
-    int updateByPrimaryKey(Hospital record);
 }

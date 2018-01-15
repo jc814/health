@@ -2,18 +2,13 @@ package hzy.dao;
 
 import hzy.entity.Person;
 import org.springframework.stereotype.Repository;
-
+/**
+ * PersonMapper interface
+ *
+ * @author hzy
+ * @date 2018/01/13
+ */
 @Repository
-public interface PersonMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface PersonMapper extends BaseMapper<Person> {
 
-    int insert(Person record);
-
-    int insertSelective(Person record);
-
-    Person selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Person record);
-
-    int updateByPrimaryKey(Person record);
 }

@@ -2,18 +2,13 @@ package hzy.dao;
 
 import hzy.entity.Admin;
 import org.springframework.stereotype.Repository;
-
+/**
+ * AdminMapper interface
+ *
+ * @author hzy
+ * @date 2018/01/13
+ */
 @Repository
-public interface AdminMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface AdminMapper extends BaseMapper<Admin> {
 
-    int insert(Admin record);
-
-    int insertSelective(Admin record);
-
-    Admin selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Admin record);
-
-    int updateByPrimaryKey(Admin record);
 }
