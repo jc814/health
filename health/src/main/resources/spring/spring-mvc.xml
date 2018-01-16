@@ -69,6 +69,8 @@
 
     <!-- 8.激活@required 等注释 -->
     <context:annotation-config/>
+
+    <!-- 9.允许跨域访问 -->
     <mvc:cors>
         <mvc:mapping path="/**" />
     </mvc:cors>
