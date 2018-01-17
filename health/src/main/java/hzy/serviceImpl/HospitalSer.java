@@ -26,4 +26,10 @@ public class HospitalSer implements IHospitalSer {
         List<Hospital> result = hospitalMapper.selectAllRecord(record);
         return result;
     }
+
+    @Override
+    public int updateRecordById(Hospital record) {
+        int result = hospitalMapper.updateByPrimaryKeySelective(record);
+        return result;
+    }
 }
