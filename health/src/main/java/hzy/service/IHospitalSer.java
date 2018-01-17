@@ -17,4 +17,11 @@ public interface IHospitalSer {
      * @return
      */
     public List<Hospital> selectAllRecord(Hospital record);
+
+    /**
+     * 根据id更新记录
+     * @param record
+     * @return
+     */
+    int updateRecordById(Hospital record);
 }
