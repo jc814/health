@@ -32,4 +32,10 @@ public class HospitalSer implements IHospitalSer {
         int result = hospitalMapper.updateByPrimaryKeySelective(record);
         return result;
     }
+
+    @Override
+    public int insertRecord(Hospital record) {
+        int result = hospitalMapper.insert(record);
+        return result;
+    }
 }

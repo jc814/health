@@ -24,4 +24,11 @@ public interface IHospitalSer {
      * @return
      */
     int updateRecordById(Hospital record);
+
+    /**
+     * 添加一条新记录
+     * @param record
+     * @return
+     */
+    int insertRecord(Hospital record);
 }
