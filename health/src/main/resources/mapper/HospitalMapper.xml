@@ -117,6 +117,12 @@
   <select id="selectAllRecord" parameterType="hzy.entity.Hospital" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from hospital
+    from
+      hospital
+    <where>
+      <if test="name != null and name != ''">
+        and name like concat('%',#{name},'%')
+      </if>
+    </where>
   </select>
 </mapper>
