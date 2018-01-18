@@ -7,11 +7,13 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="rank" jdbcType="VARCHAR" property="rank" />
     <result column="lng" jdbcType="INTEGER" property="lng" />
     <result column="lat" jdbcType="INTEGER" property="lat" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, phone, address, brief, lng, lat
+    id, name, phone, address, brief, level, rank, lng, lat
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,11 +27,11 @@
   </delete>
   <insert id="insert" parameterType="hzy.entity.Hospital">
     insert into hospital (id, name, phone, 
-      address, brief, lng, 
-      lat)
+      address, brief, level, 
+      rank, lng, lat)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, #{lng,jdbcType=INTEGER}, 
-      #{lat,jdbcType=INTEGER})
+      #{address,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=VARCHAR}, #{lng,jdbcType=INTEGER}, #{lat,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Hospital">
     insert into hospital
@@ -48,6 +50,12 @@
       </if>
       <if test="brief != null">
         brief,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="rank != null">
+        rank,
       </if>
       <if test="lng != null">
         lng,
@@ -72,6 +80,12 @@
       <if test="brief != null">
         #{brief,jdbcType=VARCHAR},
       </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=VARCHAR},
+      </if>
       <if test="lng != null">
         #{lng,jdbcType=INTEGER},
       </if>
@@ -95,6 +109,12 @@
       <if test="brief != null">
         brief = #{brief,jdbcType=VARCHAR},
       </if>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=VARCHAR},
+      </if>
       <if test="lng != null">
         lng = #{lng,jdbcType=INTEGER},
       </if>
@@ -110,6 +130,8 @@
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       brief = #{brief,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=VARCHAR},
       lng = #{lng,jdbcType=INTEGER},
       lat = #{lat,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
@@ -118,7 +140,7 @@
     select
     <include refid="Base_Column_List" />
     from
-      hospital
+    hospital
     <where>
       <if test="name != null and name != ''">
         and name like concat('%',#{name},'%')

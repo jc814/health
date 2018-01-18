@@ -11,6 +11,10 @@ public class Hospital {
 
     private String brief;
 
+    private String level;
+
+    private String rank;
+
     private Integer lng;
 
     private Integer lat;
@@ -53,6 +57,22 @@ public class Hospital {
 
     public void setBrief(String brief) {
         this.brief = brief == null ? null : brief.trim();
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank == null ? null : rank.trim();
     }
 
     public Integer getLng() {

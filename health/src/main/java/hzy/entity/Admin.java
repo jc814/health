@@ -15,6 +15,8 @@ public class Admin {
 
     private Date lastTime;
 
+    private Short type;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Admin {
 
     public void setLastTime(Date lastTime) {
         this.lastTime = lastTime;
+    }
+
+    public Short getType() {
+        return type;
+    }
+
+    public void setType(Short type) {
+        this.type = type;
     }
 }

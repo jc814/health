@@ -8,9 +8,10 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, hid, name, password, photo, last_time
+    id, hid, name, password, photo, last_time, type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="hzy.entity.Admin">
     insert into admin (id, hid, name, 
-      password, photo, last_time
-      )
+      password, photo, last_time, 
+      type)
     values (#{id,jdbcType=INTEGER}, #{hid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}
-      )
+      #{password,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Admin">
     insert into admin
@@ -51,6 +52,9 @@
       <if test="lastTime != null">
         last_time,
       </if>
+      <if test="type != null">
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -70,6 +74,9 @@
       </if>
       <if test="lastTime != null">
         #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
@@ -91,6 +98,9 @@
       <if test="lastTime != null">
         last_time = #{lastTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -100,7 +110,8 @@
       name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
-      last_time = #{lastTime,jdbcType=TIMESTAMP}
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
