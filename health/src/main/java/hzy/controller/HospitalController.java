@@ -1,15 +1,16 @@
 package hzy.controller;
 
+import com.github.pagehelper.Page;
 import hzy.entity.Hospital;
 import hzy.service.IHospitalSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/hospital")
@@ -25,22 +26,32 @@ public class HospitalController {
 
     @RequestMapping("/selectAllRecord")
     @ResponseBody
-    private List<Hospital> selectAllRecord(Hospital record){
-        List<Hospital> result = hospitalSer.selectAllRecord(record);
-        return result;
+    private Map<String, Object> selectAllRecord(Hospital record, int currentPage, int pageSize){
+        Page<Hospital> result = hospitalSer.selectAllRecord(record, currentPage, pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("data", result);
+        map.put("number", result.getTotal());
+        return map;
     }
 
     @RequestMapping(value = "/updateRecordById", method = RequestMethod.POST)
     @ResponseBody
-    private int updateRecordById(@RequestBody Hospital record){
+    private int updateRecordById(Hospital record){
         int result = hospitalSer.updateRecordById(record);
         return result;
     }
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
     @ResponseBody
-    private int insertRecord(@RequestBody Hospital record){
+    private int insertRecord(Hospital record){
         int result = hospitalSer.insertRecord(record);
+        return result;
+    }
+
+    @RequestMapping(value = "/deleteRecord", method = RequestMethod.POST)
+    @ResponseBody
+    private int deleteRecord(Integer id){
+        int result = hospitalSer.deleteRecord(id);
         return result;
     }
 }
