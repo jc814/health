@@ -9,4 +9,13 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <!-- 分页插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 分页合理化参数，当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页 -->
+            <property name="reasonable" value="true"/>
+            <!-- 允许在运行时根据多数据源自动识别对应方言的分页 -->
+            <property name="autoRuntimeDialect" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>
