@@ -2,13 +2,13 @@
 package hzy.serviceImpl;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import hzy.dao.HospitalMapper;
 import hzy.entity.Hospital;
 import hzy.service.IHospitalSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * HospitalSer class
@@ -22,9 +22,10 @@ public class HospitalSer implements IHospitalSer {
     private HospitalMapper hospitalMapper;
 
     @Override
-    public List<Hospital> selectAllRecord(Hospital record) {
-        List<Hospital> result = hospitalMapper.selectAllRecord(record);
-        return result;
+    public Page<Hospital> selectAllRecord(Hospital record, int currentPage, int pageSize) {
+        Page<Hospital> page = PageHelper.startPage(currentPage, pageSize);
+        hospitalMapper.selectAllRecord(record);
+        return page;
     }
 
     @Override
@@ -36,6 +37,12 @@ public class HospitalSer implements IHospitalSer {
     @Override
     public int insertRecord(Hospital record) {
         int result = hospitalMapper.insert(record);
+        return result;
+    }
+
+    @Override
+    public int deleteRecord(Integer id) {
+        int result = hospitalMapper.deleteByPrimaryKey(id);
         return result;
     }
 }
