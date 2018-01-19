@@ -3,6 +3,7 @@ package hzy.serviceImpl;
 
 
 import hzy.dao.AdminMapper;
+import hzy.entity.Admin;
 import hzy.service.IAdminSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,9 @@ import org.springframework.stereotype.Service;
 public class AdminSer implements IAdminSer {
     @Autowired
     private AdminMapper adminMapper;
+
+    @Override
+    public Admin selectAdminByNameAndPsd(Admin admin) {
+        return adminMapper.selectAdminByNameAndPsd(admin);
+    }
 }
