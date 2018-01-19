@@ -114,4 +114,14 @@
       type = #{type,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAdminByNameAndPsd" parameterType="hzy.entity.Admin" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    FROM
+      admin
+    where
+      name = #{name}
+    and
+      password = #{password}
+  </select>
 </mapper>

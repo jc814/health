@@ -1,6 +1,6 @@
 package hzy.service;
 
-/**
+import hzy.entity.Admin; /**
  * IAdminSer interface
  *
  * @author hzy
@@ -8,4 +8,10 @@ package hzy.service;
  */
 public interface IAdminSer {
 
+    /**
+     * 管理员的登录
+     * @param admin
+     * @return
+     */
+    Admin selectAdminByNameAndPsd(Admin admin);
 }
