@@ -26,14 +26,14 @@ public class Result {
     /**
      * 分页总数
      */
-    private Integer tatalNum;
+    private Long tatalNum;
 
     public Result(Boolean success, Object data) {
         this.success = success;
         this.data = data;
     }
 
-    public Result(Boolean success, Object data, Integer tatalNum) {
+    public Result(Boolean success, Object data, Long tatalNum) {
         this.success = success;
         this.data = data;
         this.tatalNum = tatalNum;
@@ -45,6 +45,7 @@ public class Result {
     public Result(Boolean success) {
         this.success = success;
     }
+
 
     public Boolean getSuccess() {
         return success;
@@ -78,11 +79,11 @@ public class Result {
         this.data = data;
     }
 
-    public Integer getTatalNum() {
+    public Long getTatalNum() {
         return tatalNum;
     }
 
-    public void setTatalNum(Integer tatalNum) {
+    public void setTatalNum(Long tatalNum) {
         this.tatalNum = tatalNum;
     }
 }
