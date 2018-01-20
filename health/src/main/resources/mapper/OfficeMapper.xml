@@ -5,9 +5,13 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="hid" jdbcType="INTEGER" property="hid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, hid, name
+    id, hid, name, phone
+  </sql>
+  <sql id="Base_Column_List2">
+    o.id, o.hid, o.name, o.phone
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,10 +24,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="hzy.entity.Office">
-    insert into office (id, hid, name
-      )
-    values (#{id,jdbcType=INTEGER}, #{hid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
-      )
+    insert into office (id, hid, name, 
+      phone)
+    values (#{id,jdbcType=INTEGER}, #{hid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Office">
     insert into office
@@ -37,6 +41,9 @@
       <if test="name != null">
         name,
       </if>
+      <if test="phone != null">
+        phone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -47,6 +54,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -59,13 +69,31 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="hzy.entity.Office">
     update office
     set hid = #{hid,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR}
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectOfficeHospitalId" parameterType="hzy.entity.Office" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List2" />,
+      h.name as hospitalName
+    from
+      office o
+    left join
+      hospital h on o.hid = h.id
+    <where>
+      <if test="hid != null">
+        hid = #{hid}
+      </if>
+    </where>
+  </select>
 </mapper>
