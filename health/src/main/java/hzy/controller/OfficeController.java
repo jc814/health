@@ -1,19 +1,37 @@
 package hzy.controller;
 
+import com.github.pagehelper.Page;
+import hzy.entity.Office;
 import hzy.service.IOfficeSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-@RequestMapping("office")
+import org.springframework.web.bind.annotation.ResponseBody;
+import utils.Result;
 /**
  * OfficeController class
  *
  * @author hzy
  * @date 2018/1/15
  */
+@Controller
+@RequestMapping("office")
 public class OfficeController {
     @Autowired
     private IOfficeSer officeSer;
+
+    @RequestMapping("selectOfficeHospitalId")
+    @ResponseBody
+    public Result selectOfficeHospitalId(Office record, int currentPage, int pageSize){
+        Result result;
+        try{
+            Page<Office> page = officeSer.selectOfficeHospitalId(record, currentPage, pageSize);
+            result = new Result(true, page, page.getTotal());
+        }catch (Exception e){
+            e.printStackTrace();
+            result = new Result(false);
+        }
+        return result;
+
+    }
 }

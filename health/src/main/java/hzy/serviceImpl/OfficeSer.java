@@ -2,7 +2,10 @@
 package hzy.serviceImpl;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import hzy.dao.OfficeMapper;
+import hzy.entity.Office;
 import hzy.service.IOfficeSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,4 +20,11 @@ import org.springframework.stereotype.Service;
 public class OfficeSer implements IOfficeSer {
     @Autowired
     private OfficeMapper officelMapper;
+
+    @Override
+    public Page<Office> selectOfficeHospitalId(Office record, int currentPage, int pageSize) {
+        Page<Office> page = PageHelper.startPage(currentPage, pageSize);
+        officelMapper.selectOfficeHospitalId(record);
+        return page;
+    }
 }
