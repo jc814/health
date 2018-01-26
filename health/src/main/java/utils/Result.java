@@ -28,6 +28,11 @@ public class Result {
      */
     private Long tatalNum;
 
+    /**
+     * token 令牌
+     */
+    private String token;
+
     public Result(Boolean success, Object data) {
         this.success = success;
         this.data = data;
@@ -85,5 +90,13 @@ public class Result {
 
     public void setTatalNum(Long tatalNum) {
         this.tatalNum = tatalNum;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
