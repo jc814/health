@@ -74,4 +74,13 @@
     <mvc:cors>
         <mvc:mapping path="/**" />
     </mvc:cors>
+
+    <!-- 10.拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/adminLogin"/>
+            <bean class="hzy.interceptor.TokenInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
