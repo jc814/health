@@ -28,7 +28,7 @@ public class HospitalController {
     @ResponseBody
     private Map<String, Object> selectAllRecord(Hospital record, int currentPage, int pageSize){
         Page<Hospital> result = hospitalSer.selectAllRecord(record, currentPage, pageSize);
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("data", result);
         map.put("number", result.getTotal());
         return map;
