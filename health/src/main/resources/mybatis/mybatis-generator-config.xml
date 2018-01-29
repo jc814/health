@@ -57,7 +57,7 @@
             <!--<ignoreColumn column="FRED" />-->
             <!-- 指定列的java数据类型 -->
             <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
-        <!--</table>-->
+       <!-- </table>-->
         <!--<table schema="health" tableName="doctor"
                domainObjectName="Doctor" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
@@ -65,11 +65,6 @@
         </table>
         <table schema="health" tableName="workShift"
                domainObjectName="WorkShift" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
-        <table schema="health" tableName="hospital"
-               domainObjectName="Hospital" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>
@@ -92,16 +87,21 @@
                domainObjectName="Log" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
-        </table>-->
-        <table schema="health" tableName="admin"
-               domainObjectName="Admin" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
         </table>
         <table schema="health" tableName="person"
                domainObjectName="Person" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>
+        <table schema="health" tableName="hospital"
+               domainObjectName="Hospital" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        <table schema="health" tableName="admin"
+               domainObjectName="Admin" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>-->
     </context>
 </generatorConfiguration>
