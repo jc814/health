@@ -33,6 +33,11 @@ public class Result {
      */
     private String token;
 
+    /**
+     * 错误代码
+     */
+    private Integer errorCode;
+
     public Result(Boolean success, Object data) {
         this.success = success;
         this.data = data;
@@ -49,6 +54,11 @@ public class Result {
 
     public Result(Boolean success) {
         this.success = success;
+    }
+
+    public Result(Boolean success, Integer errorCode) {
+        this.success = success;
+        this.errorCode = errorCode;
     }
 
 
@@ -98,5 +108,13 @@ public class Result {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Integer getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 }

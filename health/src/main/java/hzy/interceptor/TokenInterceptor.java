@@ -2,9 +2,13 @@ package hzy.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import utils.JsonUtils;
+import utils.JwtUtils;
+import utils.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * TokenInterceptor class
@@ -15,10 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String Authorization =  httpServletRequest.getHeader("Authorization");
-        if(Authorization == null || "".equals(Authorization)){
+        String authorization =  httpServletRequest.getHeader("Authorization");
+        if(authorization == null || "".equals(authorization)){
             return true;
         }
+        Result result = JwtUtils.verifyToken(authorization);
+        PrintWriter pw = httpServletResponse.getWriter();
+        pw.write(JsonUtils.toJson(result));
         return true;
     }
 

@@ -1,10 +1,13 @@
 package utils;
 
+import hzy.dto.AdminDTO;
 import io.jsonwebtoken.*;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
+import java.security.MessageDigest;
 import java.util.Date;
 
 /**
@@ -27,7 +30,7 @@ public class JwtUtils {
      * 创建token
      * @return
      */
-    public static String createToken(String id, String issuer, String subject){
+    public static String createToken(String id, AdminDTO admin){
         long ttlMillis = KEEP_TIME;
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         long nowMillis = System.currentTimeMillis();
@@ -35,15 +38,15 @@ public class JwtUtils {
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
         JwtBuilder builder = Jwts.builder().setId(id)
-                .setIssuedAt(now);
-        if(subject!=null){
-            builder.setSubject(subject);
-        }
-        if(issuer!=null){
-            builder.setIssuer(issuer);
-        }
-        builder .signWith(signatureAlgorithm, signingKey);
-
+                .setIssuedAt(now)
+                .claim("id", admin.getId())
+                .claim("hid", admin.getHid())
+                .claim("name", admin.getName())
+                .claim("type", admin.getType())
+                .claim("time", admin.getLastTime())
+                .claim("nameForToken", admin.getNameForToken())
+                .claim("photo", admin.getPhoto());
+        builder.signWith(signatureAlgorithm, signingKey);
         if (ttlMillis >= 0) {
             long expMillis = nowMillis + ttlMillis;
             Date exp = new Date(expMillis);
@@ -57,17 +60,56 @@ public class JwtUtils {
      * @return
      */
     public static Result verifyToken(String token){
-        Result result = new Result();
+        Result result = null;
         try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token).getBody();
+            Integer id = (Integer) claims.get("id");
+            String name = claims.get("name").toString();
+            String md5 = createMd5(encrypt(id, name));
+            if(md5 != null && md5.equals(claims.get("nameForToken"))){
+                result = new Result(true);
+            }else{
+                result = new Result(false, 603);
+            }
+        } catch (ExpiredJwtException e){ //过期token
+            result = new Result(false, 601);
 
         } catch (SignatureException | MalformedJwtException e) { //非法token
-
-        } catch (ExpiredJwtException e){ //过期token
-
+            result = new Result(false, 602);
         }
-        Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
-                .parseClaimsJws(token).getBody();
         return result;
+    }
+
+    /**
+     * md5算法
+     * @return
+     */
+    public static String createMd5(String code){
+        try{
+            // 获得一个指定编码的信息摘要算法
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            BASE64Encoder base64en = new BASE64Encoder();
+            // 获得数据的数据指纹
+            String digest = base64en.encode(md.digest(code.getBytes()));
+            return digest;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 登录加密算法
+     * @return
+     */
+    public static String encrypt(Integer id ,String name){
+        int length = name.length();
+        int position = id % length;
+        String pre = name.substring(0,position);
+        String sub = name.substring(position+1 , length);
+        String newName = pre + id + "623" + sub;
+        return  newName;
     }
 }
