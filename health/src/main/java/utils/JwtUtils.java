@@ -61,24 +61,30 @@ public class JwtUtils {
      */
     public static Result verifyToken(String token){
         Result result = null;
-        try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
-                    .parseClaimsJws(token).getBody();
-            Integer id = (Integer) claims.get("id");
-            String name = claims.get("name").toString();
-            String md5 = createMd5(encrypt(id, name));
-            if(md5 != null && md5.equals(claims.get("nameForToken"))){
-                result = new Result(true);
-            }else{
-                result = new Result(false, 603);
-            }
-        } catch (ExpiredJwtException e){ //过期token
+        if(token == null || "".equals(token)){
+            //没有token信息
             result = new Result(false, 601);
+        }else{
+            try {
+                Claims claims = Jwts.parser()
+                        .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                        .parseClaimsJws(token).getBody();
+                Integer id = (Integer) claims.get("id");
+                String name = claims.get("name").toString();
+                String md5 = createMd5(encrypt(id, name));
+                if(md5 != null && md5.equals(claims.get("nameForToken"))){
+                    result = new Result(true);
+                }else{  //被篡改过
+                    result = new Result(false, 602);
+                }
+            } catch (ExpiredJwtException e){ //过期token
+                result = new Result(false, 603);
 
-        } catch (SignatureException | MalformedJwtException e) { //非法token
-            result = new Result(false, 602);
+            } catch (SignatureException | MalformedJwtException e) { //非法token
+                result = new Result(false, 604);
+            }
         }
+
         return result;
     }
 
