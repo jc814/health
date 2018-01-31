@@ -22,17 +22,17 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String authorization =  httpServletRequest.getHeader("Authorization");
         Result result = JwtUtils.verifyToken(authorization);
-        // 在response中添加返回参数
-        httpServletResponse.setContentType("application/json");
-        PrintWriter out = httpServletResponse.getWriter();
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonOfRST = JsonUtils.toJson(result);
-        out.print(jsonOfRST);
-        out.flush();
         // 判断result中success的值，验证失败返回false
         if(result.getSuccess()){
             return true;
         }else{
+            // 在response中添加返回参数
+            httpServletResponse.setContentType("application/json");
+            PrintWriter out = httpServletResponse.getWriter();
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonOfRST = JsonUtils.toJson(result);
+            out.print(jsonOfRST);
+            out.flush();
             return false;
         }
 
