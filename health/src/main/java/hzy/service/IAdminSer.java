@@ -1,12 +1,14 @@
 package hzy.service;
 
-import hzy.entity.Admin; /**
+import hzy.entity.Admin;
+
+/**
  * IAdminSer interface
  *
  * @author hzy
  * @date 2018/01/15
  */
-public interface IAdminSer {
+public interface IAdminSer extends IBaseSer<Admin>{
 
     /**
      * 管理员的登录

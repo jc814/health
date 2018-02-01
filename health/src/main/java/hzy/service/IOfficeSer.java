@@ -9,7 +9,7 @@ import hzy.entity.Office;
  * @author hzy
  * @date 2018/01/15
  */
-public interface IOfficeSer {
+public interface IOfficeSer extends IBaseSer<Office>{
 
     /**
      * 根据医院id查询科室信息

@@ -1,5 +1,7 @@
 package hzy.dao;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,7 @@ import java.util.List;
  * @author hzy
  * @date 2018/01/15
  */
+@Repository
 public interface BaseMapper<T> {
     /**
      * 根据id删除记录

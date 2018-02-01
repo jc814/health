@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @date 2018/01/15
  */
 @Service
-public class AdminSer implements IAdminSer {
+public class AdminSer extends BaseSer<Admin> implements IAdminSer {
     @Autowired
     private AdminMapper adminMapper;
 

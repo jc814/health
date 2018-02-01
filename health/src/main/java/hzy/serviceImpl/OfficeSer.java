@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @date 2018/01/15
  */
 @Service
-public class OfficeSer implements IOfficeSer {
+public class OfficeSer extends BaseSer<Office> implements IOfficeSer  {
     @Autowired
     private OfficeMapper officelMapper;
 

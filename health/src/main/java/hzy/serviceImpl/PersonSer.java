@@ -3,6 +3,7 @@ package hzy.serviceImpl;
 
 
 import hzy.dao.PersonMapper;
+import hzy.entity.Person;
 import hzy.service.IPersonSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @date 2018/01/15
  */
 @Service
-public class PersonSer implements IPersonSer {
+public class PersonSer extends BaseSer<Person> implements IPersonSer {
     @Autowired
     private PersonMapper personMapper;
 }
