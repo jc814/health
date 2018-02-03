@@ -38,7 +38,7 @@ public class AdminController {
             Key key = MacProvider.generateKey();
             //产生令牌
             String token = JwtUtils.createToken(one.getName(), adminDTO);
-            result = new Result(true, one);
+            result = new Result(true, adminDTO);
             result.setToken(token);
         }else{
             result = new Result(false);

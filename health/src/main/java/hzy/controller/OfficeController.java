@@ -6,6 +6,7 @@ import hzy.service.IOfficeSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import utils.Result;
 /**
@@ -32,6 +33,26 @@ public class OfficeController {
             result = new Result(false);
         }
         return result;
+    }
 
+    @RequestMapping(value = "/updateRecordById", method = RequestMethod.POST)
+    @ResponseBody
+    private int updateRecordById(Office record){
+        int result = officeSer.updateRecordById(record);
+        return result;
+    }
+
+    @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
+    @ResponseBody
+    private int insertRecord(Office record){
+        int result = officeSer.insertRecord(record);
+        return result;
+    }
+
+    @RequestMapping(value = "/deleteRecord", method = RequestMethod.POST)
+    @ResponseBody
+    private int deleteRecord(Integer id){
+        int result = officeSer.deleteRecord(id);
+        return result;
     }
 }

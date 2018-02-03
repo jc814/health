@@ -15,6 +15,10 @@ public class Doctor {
 
     private String phone;
 
+    private Integer hid;
+
+    private String officeName;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +73,21 @@ public class Doctor {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Integer getHid() {
+        return hid;
+    }
+
+    public void setHid(Integer hid) {
+        this.hid = hid;
+    }
+
+    public String getOfficeName() {
+        return officeName;
+    }
+
+    public void setOfficeName(String officeName) {
+        this.officeName = officeName;
     }
 }

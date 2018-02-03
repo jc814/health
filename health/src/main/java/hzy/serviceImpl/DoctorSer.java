@@ -19,4 +19,5 @@ public class DoctorSer extends BaseSer<Doctor> implements IDoctorSer {
 
     @Autowired
     private DoctorMapper doctorMapper;
+
 }

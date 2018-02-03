@@ -10,6 +10,4 @@ import hzy.entity.Doctor;
  */
 public interface IDoctorSer extends IBaseSer<Doctor>{
 
-
-
 }

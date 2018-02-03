@@ -114,4 +114,31 @@
       phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 根据条件查询医生信息 -->
+  <select id="selectAllRecord" parameterType="hzy.entity.Doctor" resultMap="BaseResultMap">
+    SELECT
+      d.*,
+      o.name AS officeName
+    FROM
+      doctor d
+    LEFT JOIN
+      office o ON d.oid = o.id
+    LEFT JOIN
+      hospital h ON o.hid = h.id
+    <where>
+      <if test="id != null">
+        AND d.id = #{id}
+      </if>
+      <if test="name != null and name != ''">
+        AND d.name = #{name}
+      </if>
+      <if test="oid != null">
+        AND d.oid = #{oid}
+      </if>
+      <if test="hid != null">
+        AND o.hid = #{hid}
+      </if>
+    </where>
+  </select>
 </mapper>
