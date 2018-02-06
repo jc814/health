@@ -32,7 +32,7 @@ public class AdminController {
         Result result ;
         Admin one = adminSer.selectAdminByNameAndPsd(admin);
         if(one != null){
-            String tokenName = JwtUtils.createMd5(JwtUtils.encrypt(one.getId(),one.getName()));
+            String tokenName = JwtUtils.createMd5(JwtUtils.encrypt(one.getId(),one.getName(),one.getType()));
             AdminDTO adminDTO = ConvertClass.PojoToDto(one, AdminDTO.class);
             adminDTO.setNameForToken(tokenName);
             Key key = MacProvider.generateKey();

@@ -9,6 +9,8 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * jjwt工具类
@@ -63,28 +65,53 @@ public class JwtUtils {
         Result result = null;
         if(token == null || "".equals(token)){
             //没有token信息
-            result = new Result(false, 601);
+            result = new Result(false, 6001);
         }else{
             try {
                 Claims claims = Jwts.parser()
                         .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                         .parseClaimsJws(token).getBody();
                 Integer id = (Integer) claims.get("id");
+                Short type = (Short) claims.get("type");
                 String name = claims.get("name").toString();
-                String md5 = createMd5(encrypt(id, name));
+                String md5 = createMd5(encrypt(id, name, type));
                 if(md5 != null && md5.equals(claims.get("nameForToken"))){
                     result = new Result(true);
                 }else{  //被篡改过
-                    result = new Result(false, 602);
+                    result = new Result(false, 6002);
                 }
             } catch (ExpiredJwtException e){ //过期token
-                result = new Result(false, 603);
+                result = new Result(false, 6003);
 
             } catch (SignatureException | MalformedJwtException e) { //非法token
-                result = new Result(false, 604);
+                result = new Result(false, 6002);
             }
         }
 
+        return result;
+    }
+    /**
+     * 解析token
+     * @return
+     */
+    public static Map<String,Integer> verifyAuth(String token) {
+        Map<String, Integer> result = new HashMap<String, Integer>();
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token).getBody();
+            Integer id = (Integer) claims.get("id");
+            Integer type = (Integer) claims.get("type");
+            Integer hid = (Integer) claims.get("hid");
+            result.put("id", id);
+            result.put("type", type);
+            result.put("hid", hid);
+        } catch (ExpiredJwtException e) { //过期token
+            e.printStackTrace();
+
+        } catch (SignatureException | MalformedJwtException e) { //非法token
+            e.printStackTrace();
+        }
         return result;
     }
 
@@ -110,12 +137,12 @@ public class JwtUtils {
      * 登录加密算法
      * @return
      */
-    public static String encrypt(Integer id ,String name){
+    public static String encrypt(Integer id, String name, Short type){
         int length = name.length();
         int position = id % length;
         String pre = name.substring(0,position);
         String sub = name.substring(position+1 , length);
-        String newName = pre + id + "623" + sub;
+        String newName = pre + id + "61" + type + "23" + sub;
         return  newName;
     }
 }

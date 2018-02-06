@@ -87,5 +87,10 @@
             <mvc:exclude-mapping path="/admin/adminLogin"/>
             <bean class="hzy.interceptor.TokenInterceptor" />
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/adminLogin"/>
+            <bean class="hzy.interceptor.AuthVerifyInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>
