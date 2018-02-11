@@ -72,7 +72,7 @@ public class JwtUtils {
                         .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                         .parseClaimsJws(token).getBody();
                 Integer id = (Integer) claims.get("id");
-                Short type = (Short) claims.get("type");
+                Short type = ((Integer) claims.get("type")).shortValue();
                 String name = claims.get("name").toString();
                 String md5 = createMd5(encrypt(id, name, type));
                 if(md5 != null && md5.equals(claims.get("nameForToken"))){

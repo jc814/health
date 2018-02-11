@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.HashMap;
-import java.util.Map;
+import utils.Result;
 
 @Controller
 @RequestMapping("/hospital")
@@ -26,12 +24,16 @@ public class HospitalController {
 
     @RequestMapping("/selectAllRecord")
     @ResponseBody
-    private Map<String, Object> selectAllRecord(Hospital record, int currentPage, int pageSize){
-        Page<Hospital> result = hospitalSer.selectAllRecord(record, currentPage, pageSize);
-        Map<String, Object> map = new HashMap<String, Object>(16);
-        map.put("data", result);
-        map.put("number", result.getTotal());
-        return map;
+    private Result selectAllRecord(Hospital record, int currentPage, int pageSize){
+        Result result = null;
+        try{
+            Page<Hospital> page = hospitalSer.selectAllRecord(record, currentPage, pageSize);
+            result = new Result(true, page, page.getTotal());
+        }catch (Exception e){
+            result = new Result(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @RequestMapping(value = "/updateRecordById", method = RequestMethod.POST)
