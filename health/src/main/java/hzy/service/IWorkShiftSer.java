@@ -10,4 +10,12 @@ import hzy.entity.WorkShift;
  */
 public interface IWorkShiftSer extends IBaseSer<WorkShift>{
 
+    /**
+     * 插入班次信息（包括插入时间表）
+     * @param record
+     * @return
+     */
+    @Override
+    int insertRecord(WorkShift record);
+
 }

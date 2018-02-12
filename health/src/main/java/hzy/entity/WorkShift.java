@@ -1,5 +1,7 @@
 package hzy.entity;
 
+import java.util.List;
+
 public class WorkShift {
     private Integer id;
 
@@ -18,6 +20,8 @@ public class WorkShift {
     private Short sat;
 
     private Short sun;
+
+    private List<Schedule> scheduleList;
 
     public Integer getId() {
         return id;
@@ -89,5 +93,13 @@ public class WorkShift {
 
     public void setSun(Short sun) {
         this.sun = sun;
+    }
+
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
+    }
+
+    public void setScheduleList(List<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
     }
 }
