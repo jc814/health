@@ -21,7 +21,7 @@ public class WorkShift {
 
     private Short sun;
 
-    private List<Schedule> scheduleList;
+    private List<Schedule> schedules;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class WorkShift {
         this.sun = sun;
     }
 
-    public List<Schedule> getScheduleList() {
-        return scheduleList;
+    public List<Schedule> getSchedules() {
+        return schedules;
     }
 
-    public void setScheduleList(List<Schedule> scheduleList) {
-        this.scheduleList = scheduleList;
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

@@ -33,7 +33,7 @@ public class WorkShiftSer extends BaseSer<WorkShift> implements IWorkShiftSer {
         try {
             workShiftMapper.insert(record);
             //添加时间表信息
-            for(Schedule schedule : record.getScheduleList()){
+            for(Schedule schedule : record.getSchedules()){
                 scheduleMapper.insert(schedule);
             }
             flag = 1;
