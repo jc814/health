@@ -1,5 +1,6 @@
 package hzy.service;
 
+import com.github.pagehelper.Page;
 import hzy.entity.WorkShift;
 
 /**
@@ -17,5 +18,16 @@ public interface IWorkShiftSer extends IBaseSer<WorkShift>{
      */
     @Override
     int insertRecord(WorkShift record);
+
+    /**
+     * 查询班次信息（包括时间表）
+     * @param record
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public Page<WorkShift> selectAllRecord(WorkShift record, int currentPage, int pageSize);
+
 
 }

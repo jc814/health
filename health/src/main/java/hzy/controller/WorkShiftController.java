@@ -76,17 +76,17 @@ public class WorkShiftController {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         List<Schedule> scheduleList = new ArrayList<Schedule>();
         Short on = 1;
+        Schedule schedule = null;
         String[] timesArr = times.split(",");
         try{
             for(int i=0; i<timesArr.length; i++){
-                Schedule schedule = new Schedule();
-                if(i%2 == 1){
+                if(i%2 == 0){
+                    schedule = new Schedule();
                     schedule.setStartTime(sdf.parse(timesArr[i]));
-
                 }else{
                     schedule.setEndTime(sdf.parse(timesArr[i]));
+                    scheduleList.add(schedule);
                 }
-                scheduleList.add(schedule);
             }
             record.setSchedules(scheduleList);
         }catch (ParseException e) {

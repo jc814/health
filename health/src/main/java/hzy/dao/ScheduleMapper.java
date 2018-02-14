@@ -2,6 +2,9 @@ package hzy.dao;
 
 import hzy.entity.Schedule;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 /**
  * ScheduleMapper interface
  *
@@ -11,4 +14,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScheduleMapper extends BaseMapper<Schedule> {
 
+    /**
+     * 根据班次id查询时间表
+     * @param wid 班次id
+     * @return
+     */
+    List<Schedule> selectByWid(int wid);
 }

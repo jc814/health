@@ -26,6 +26,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="hzy.entity.WorkShift">
+    <selectKey resultType="Integer" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
     insert into workshift (id, name, mon, 
       tue, wed, thu, fri, 
       sat, sun)
@@ -136,4 +140,13 @@
       sun = #{sun,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllRecord" parameterType="hzy.entity.WorkShift" resultMap="BaseResultMap">
+    SELECT
+      *
+    FROM
+      workshift
+    WHERE
+      name = #{name}
+  </select>
 </mapper>

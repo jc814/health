@@ -79,4 +79,13 @@
       end_time = #{endTime,jdbcType=TIME}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByWid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+      *
+    FROM
+      schedule
+    WHERE
+      wid = #{wid}
+  </select>
 </mapper>
