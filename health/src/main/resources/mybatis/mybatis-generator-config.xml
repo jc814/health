@@ -58,7 +58,8 @@
             <!-- 指定列的java数据类型 -->
             <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
        <!-- </table>-->
-        <!--<table schema="health" tableName="doctor"
+        <!--
+        <table schema="health" tableName="doctor"
                domainObjectName="Doctor" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
@@ -102,6 +103,12 @@
                domainObjectName="Admin" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
-        </table>-->
+        </table>
+        <table schema="health" tableName="bespeak"
+               domainObjectName="Bespeak" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        -->
     </context>
 </generatorConfiguration>

@@ -1,10 +1,5 @@
 package hzy.entity;
-/**
- * Office class
- *
- * @author hzy
- * @date 2018/01/20
- */
+
 public class Office {
     private Integer id;
 

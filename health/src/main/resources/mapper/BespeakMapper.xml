@@ -3,12 +3,13 @@
 <mapper namespace="hzy.dao.BespeakMapper">
   <resultMap id="BaseResultMap" type="hzy.entity.Bespeak">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="card_id" jdbcType="BIGINT" property="cardId" />
+    <result column="hid" jdbcType="INTEGER" property="hid" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
     <result column="did" jdbcType="INTEGER" property="did" />
     <result column="bespeak_time" jdbcType="TIMESTAMP" property="bespeakTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, card_id, did, bespeak_time
+    id, hid, card_id, did, bespeak_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,16 +22,19 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="hzy.entity.Bespeak">
-    insert into bespeak (id, card_id, did, 
-      bespeak_time)
-    values (#{id,jdbcType=INTEGER}, #{cardId,jdbcType=BIGINT}, #{did,jdbcType=INTEGER}, 
-      #{bespeakTime,jdbcType=TIMESTAMP})
+    insert into bespeak (id, hid, card_id, 
+      did, bespeak_time)
+    values (#{id,jdbcType=INTEGER}, #{hid,jdbcType=INTEGER}, #{cardId,jdbcType=VARCHAR}, 
+      #{did,jdbcType=INTEGER}, #{bespeakTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Bespeak">
     insert into bespeak
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="hid != null">
+        hid,
       </if>
       <if test="cardId != null">
         card_id,
@@ -46,8 +50,11 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="hid != null">
+        #{hid,jdbcType=INTEGER},
+      </if>
       <if test="cardId != null">
-        #{cardId,jdbcType=BIGINT},
+        #{cardId,jdbcType=VARCHAR},
       </if>
       <if test="did != null">
         #{did,jdbcType=INTEGER},
@@ -60,8 +67,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="hzy.entity.Bespeak">
     update bespeak
     <set>
+      <if test="hid != null">
+        hid = #{hid,jdbcType=INTEGER},
+      </if>
       <if test="cardId != null">
-        card_id = #{cardId,jdbcType=BIGINT},
+        card_id = #{cardId,jdbcType=VARCHAR},
       </if>
       <if test="did != null">
         did = #{did,jdbcType=INTEGER},
@@ -74,7 +84,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="hzy.entity.Bespeak">
     update bespeak
-    set card_id = #{cardId,jdbcType=BIGINT},
+    set hid = #{hid,jdbcType=INTEGER},
+      card_id = #{cardId,jdbcType=VARCHAR},
       did = #{did,jdbcType=INTEGER},
       bespeak_time = #{bespeakTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

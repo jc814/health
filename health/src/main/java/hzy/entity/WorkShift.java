@@ -5,6 +5,8 @@ import java.util.List;
 public class WorkShift {
     private Integer id;
 
+    private Integer hid;
+
     private String name;
 
     private Short mon;
@@ -21,14 +23,22 @@ public class WorkShift {
 
     private Short sun;
 
-    private List<Schedule> schedules;
-
     public Integer getId() {
         return id;
     }
 
+    private List<Schedule> schedules;
+
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getHid() {
+        return hid;
+    }
+
+    public void setHid(Integer hid) {
+        this.hid = hid;
     }
 
     public String getName() {

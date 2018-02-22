@@ -5,7 +5,9 @@ import java.util.Date;
 public class Bespeak {
     private Integer id;
 
-    private Long cardId;
+    private Integer hid;
+
+    private String cardId;
 
     private Integer did;
 
@@ -19,12 +21,20 @@ public class Bespeak {
         this.id = id;
     }
 
-    public Long getCardId() {
+    public Integer getHid() {
+        return hid;
+    }
+
+    public void setHid(Integer hid) {
+        this.hid = hid;
+    }
+
+    public String getCardId() {
         return cardId;
     }
 
-    public void setCardId(Long cardId) {
-        this.cardId = cardId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId == null ? null : cardId.trim();
     }
 
     public Integer getDid() {

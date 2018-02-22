@@ -82,10 +82,10 @@
 
   <select id="selectByWid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     SELECT
-      *
+    *
     FROM
-      schedule
+    schedule
     WHERE
-      wid = #{wid}
+    wid = #{wid}
   </select>
 </mapper>

@@ -82,14 +82,15 @@
       phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <select id="selectOfficeHospitalId" parameterType="hzy.entity.Office" resultMap="BaseResultMap">
     SELECT
-      <include refid="Base_Column_List2" />,
-      h.name as hospitalName
+    <include refid="Base_Column_List2" />,
+    h.name as hospitalName
     from
-      office o
+    office o
     left join
-      hospital h on o.hid = h.id
+    hospital h on o.hid = h.id
     <where>
       <if test="hid != null">
         hid = #{hid}

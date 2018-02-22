@@ -9,10 +9,12 @@
     <result column="age" jdbcType="SMALLINT" property="age" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="card_id" jdbcType="BIGINT" property="cardId" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, sex, phone, age, photo, password, card_id
+    id, name, sex, phone, age, photo, password, card_id, type, last_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,10 +29,12 @@
   <insert id="insert" parameterType="hzy.entity.Person">
     insert into person (id, name, sex, 
       phone, age, photo, 
-      password, card_id)
+      password, card_id, type, 
+      last_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, 
       #{phone,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{photo,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{cardId,jdbcType=BIGINT})
+      #{password,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, 
+      #{lastTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.Person">
     insert into person
@@ -59,6 +63,12 @@
       <if test="cardId != null">
         card_id,
       </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -83,7 +93,13 @@
         #{password,jdbcType=VARCHAR},
       </if>
       <if test="cardId != null">
-        #{cardId,jdbcType=BIGINT},
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -109,7 +125,13 @@
         password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="cardId != null">
-        card_id = #{cardId,jdbcType=BIGINT},
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -122,7 +144,9 @@
       age = #{age,jdbcType=SMALLINT},
       photo = #{photo,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      card_id = #{cardId,jdbcType=BIGINT}
+      card_id = #{cardId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=SMALLINT},
+      last_time = #{lastTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

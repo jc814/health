@@ -3,9 +3,11 @@ package hzy.entity;
 public class Manage {
     private Integer id;
 
+    private Integer hid;
+
     private Integer wid;
 
-    private String worshiftName;
+    private String name;
 
     private Integer did;
 
@@ -73,6 +75,14 @@ public class Manage {
         this.id = id;
     }
 
+    public Integer getHid() {
+        return hid;
+    }
+
+    public void setHid(Integer hid) {
+        this.hid = hid;
+    }
+
     public Integer getWid() {
         return wid;
     }
@@ -81,12 +91,12 @@ public class Manage {
         this.wid = wid;
     }
 
-    public String getWorshiftName() {
-        return worshiftName;
+    public String getName() {
+        return name;
     }
 
-    public void setWorshiftName(String worshiftName) {
-        this.worshiftName = worshiftName == null ? null : worshiftName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public Integer getDid() {

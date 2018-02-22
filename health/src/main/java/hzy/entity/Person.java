@@ -1,5 +1,7 @@
 package hzy.entity;
 
+import java.util.Date;
+
 public class Person {
     private Integer id;
 
@@ -15,7 +17,11 @@ public class Person {
 
     private String password;
 
-    private Long cardId;
+    private String cardId;
+
+    private Short type;
+
+    private Date lastTime;
 
     public Integer getId() {
         return id;
@@ -73,11 +79,27 @@ public class Person {
         this.password = password == null ? null : password.trim();
     }
 
-    public Long getCardId() {
+    public String getCardId() {
         return cardId;
     }
 
-    public void setCardId(Long cardId) {
-        this.cardId = cardId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId == null ? null : cardId.trim();
+    }
+
+    public Short getType() {
+        return type;
+    }
+
+    public void setType(Short type) {
+        this.type = type;
+    }
+
+    public Date getLastTime() {
+        return lastTime;
+    }
+
+    public void setLastTime(Date lastTime) {
+        this.lastTime = lastTime;
     }
 }
