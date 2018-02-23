@@ -57,6 +57,7 @@ public class WorkShiftSer extends BaseSer<WorkShift> implements IWorkShiftSer {
         for(WorkShift w : page.getResult()){
             List<Schedule> scheduleList = scheduleMapper.selectByWid(w.getId());
             w.setSchedules(scheduleList);
+            w.setScheduleCount(scheduleList.size());
         }
         return page;
     }

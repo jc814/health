@@ -145,4 +145,61 @@ public class JwtUtils {
         String newName = pre + id + "61" + type + "23" + sub;
         return  newName;
     }
+
+    /**
+     * 获取hid
+     * @return
+     */
+    public static Integer getHid(String token){
+        Integer hid = null;
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token).getBody();
+            hid = (Integer) claims.get("hid");
+        } catch (ExpiredJwtException e) { //过期token
+            e.printStackTrace();
+        } catch (SignatureException | MalformedJwtException e) { //非法token
+            e.printStackTrace();
+        }
+        return hid;
+    }
+
+    /**
+     * 获取id
+     * @return
+     */
+    public static Integer getId(String token){
+        Integer id = null;
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token).getBody();
+            id = (Integer) claims.get("id");
+        } catch (ExpiredJwtException e) { //过期token
+            e.printStackTrace();
+        } catch (SignatureException | MalformedJwtException e) { //非法token
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    /**
+     * 获取type
+     * @return
+     */
+    public static Integer getType(String token){
+        Integer type = null;
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token).getBody();
+            type = (Integer) claims.get("type");
+        } catch (ExpiredJwtException e) { //过期token
+            e.printStackTrace();
+        } catch (SignatureException | MalformedJwtException e) { //非法token
+            e.printStackTrace();
+        }
+        return type;
+    }
 }

@@ -23,11 +23,13 @@ public class WorkShift {
 
     private Short sun;
 
+    private List<Schedule> schedules;
+
+    private Integer scheduleCount;
+
     public Integer getId() {
         return id;
     }
-
-    private List<Schedule> schedules;
 
     public void setId(Integer id) {
         this.id = id;
@@ -111,5 +113,13 @@ public class WorkShift {
 
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public Integer getScheduleCount() {
+        return scheduleCount;
+    }
+
+    public void setScheduleCount(Integer scheduleCount) {
+        this.scheduleCount = scheduleCount;
     }
 }

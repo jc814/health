@@ -27,6 +27,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="hzy.entity.WorkShift">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into workshift (id, hid, name, 
       mon, tue, wed, thu, 
       fri, sat, sun)
@@ -153,7 +156,14 @@
     *
     FROM
     workshift
-    WHERE
-    name = #{name}
+    <where>
+      <if test="name != null and name != ''">
+        name = #{name}
+      </if>
+      <if test="hid != null and hid != ''">
+        hid = #{hid}
+      </if>
+    </where>
+
   </select>
 </mapper>

@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import utils.JwtUtils;
 import utils.NumberUtils;
 import utils.Result;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,10 +54,13 @@ public class WorkShiftController {
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
     @ResponseBody
-    private int insertRecord(WorkShift record, String times, String days){
+    private int insertRecord(WorkShift record, String times, String days, HttpServletRequest req){
+        String token = req.getHeader("Authorization");
+        Integer hid = JwtUtils.getHid(token);
         int successNum;
         Result result = workShiftInstall(record, times, days);
         if(result.getSuccess()){
+            record.setHid(hid);
             successNum = workShiftSer.insertRecord(record);
         }else{
             return 0;
