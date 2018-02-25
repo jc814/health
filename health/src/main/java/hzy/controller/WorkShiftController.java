@@ -47,9 +47,18 @@ public class WorkShiftController {
 
     @RequestMapping(value = "/updateRecordById", method = RequestMethod.POST)
     @ResponseBody
-    private int updateRecordById(WorkShift record){
-        int result = workShiftSer.updateRecordById(record);
-        return result;
+    private int updateRecordById(WorkShift record, String times, String days, HttpServletRequest req){
+        String token = req.getHeader("Authorization");
+        Integer hid = JwtUtils.getHid(token);
+        Result result = workShiftInstall(record, times, days);
+        int successNum;
+        if(result.getSuccess()){
+            record.setHid(hid);
+            successNum = workShiftSer.updateRecordById(record);
+        }else{
+            return 0;
+        }
+        return successNum;
     }
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)

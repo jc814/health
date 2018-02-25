@@ -20,4 +20,11 @@ public interface ScheduleMapper extends BaseMapper<Schedule> {
      * @return
      */
     List<Schedule> selectByWid(int wid);
+
+    /**
+     * 根据班次id删除询时间表
+     * @param wid 班次id
+     * @return
+     */
+    int deleteByWid(int wid);
 }

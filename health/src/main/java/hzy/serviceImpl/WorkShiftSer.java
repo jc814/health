@@ -61,4 +61,36 @@ public class WorkShiftSer extends BaseSer<WorkShift> implements IWorkShiftSer {
         }
         return page;
     }
+
+    @Override
+    public int updateRecordById(WorkShift record) {
+        int result = 0;
+        try {
+            scheduleMapper.deleteByWid(record.getId());
+            workShiftMapper.updateByPrimaryKeySelective(record);
+            //添加时间表信息
+            for(Schedule schedule : record.getSchedules()){
+                schedule.setWid(record.getId());
+                scheduleMapper.insert(schedule);
+            }
+            result = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = 0;
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteRecord(Integer id){
+        int flag = 0;
+        try {
+            scheduleMapper.deleteByWid(id);
+            workShiftMapper.deleteByPrimaryKey(id);
+            flag = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

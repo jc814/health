@@ -88,4 +88,12 @@
     WHERE
     wid = #{wid}
   </select>
+
+  <delete id="deleteByWid" parameterType="java.lang.Integer">
+    DELETE FROM
+      schedule
+    WHERE
+      wid = #{wid}
+  </delete>
+
 </mapper>
