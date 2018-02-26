@@ -8,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import utils.JwtUtils;
 import utils.Result;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * OfficeController class
  *
@@ -44,7 +48,13 @@ public class OfficeController {
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
     @ResponseBody
-    private int insertRecord(Office record){
+    private int insertRecord(Office record, HttpServletRequest req){
+        String token = req.getHeader("Authorization");
+        Integer type = JwtUtils.getType(token);
+        Integer hid = JwtUtils.getHid(token);
+        if(type != null && type.intValue() == 0){
+            record.setHid(hid);
+        }
         int result = officeSer.insertRecord(record);
         return result;
     }
