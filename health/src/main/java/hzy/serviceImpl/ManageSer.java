@@ -45,29 +45,35 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
 
     @Override
     public int judgeOption(Integer wid, List<Integer> doctorsId) {
-        List<Integer> oldDoctorsId = new ArrayList<Integer>();
-        Manage manage = new Manage();
-        manage.setWid(wid);
-        List<Manage> manageList = manageMapper.selectAllRecord(manage);
-        for (Manage m : manageList){
-            oldDoctorsId.add(m.getDid());
+        int flag;
+        try {
+            List<Integer> oldDoctorsId = new ArrayList<Integer>();
+            Manage manage = new Manage();
+            manage.setWid(wid);
+            List<Manage> manageList = manageMapper.selectAllRecord(manage);
+            for (Manage m : manageList){
+                oldDoctorsId.add(m.getDid());
+            }
+            List<Integer> insertList = new ArrayList<Integer>(doctorsId);
+            List<Integer> notDoList = new ArrayList<Integer>(doctorsId);
+            List<Integer> deleteList = new ArrayList<Integer>(oldDoctorsId);
+            //不变的did记录
+            notDoList.retainAll(oldDoctorsId);
+            //删除的did记录
+            deleteList.removeAll(notDoList);
+            //添加的did记录
+            insertList.removeAll(notDoList);
+            //删除操作
+            for(Integer deleteId : deleteList){
+                manageMapper.deleteByDid(deleteId);
+            }
+            //添加操作
+            insertManyRecord(wid,insertList);
+            flag = 1;
+        } catch (Exception e) {
+            flag = 0;
         }
-        List<Integer> insertList = new ArrayList<Integer>(doctorsId);
-        List<Integer> notDoList = new ArrayList<Integer>(doctorsId);
-        List<Integer> deleteList = new ArrayList<Integer>(oldDoctorsId);
-        //不变的did记录
-        notDoList.retainAll(oldDoctorsId);
-        //删除的did记录
-        deleteList.removeAll(notDoList);
-        //添加的did记录
-        insertList.removeAll(notDoList);
-        //删除操作
-        for(Integer deleteId : deleteList){
-            manageMapper.deleteByDid(deleteId);
-        }
-        //添加操作
-        insertManyRecord(wid,insertList);
-        return 1;
+        return flag;
     }
 
 }

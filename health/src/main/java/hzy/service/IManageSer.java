@@ -13,6 +13,7 @@ import java.util.List;
 public interface IManageSer extends IBaseSer<Manage>{
     /**
      * 插入数据（多条）
+     * @param wid
      * @param record
      * @return
      */

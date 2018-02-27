@@ -26,11 +26,16 @@ public class WorkShift {
 
     private Short sun;
 
+    /**
+     * 供排班使用剔除不需要的id
+     */
     private String dids;
 
     private List<Schedule> schedules;
 
     private Integer scheduleCount;
+
+    private Boolean inUsed;
 
     public Integer getId() {
         return id;
@@ -134,5 +139,13 @@ public class WorkShift {
 
     public void setDids(String dids) {
         this.dids = dids;
+    }
+
+    public Boolean getInUsed() {
+        return inUsed;
+    }
+
+    public void setInUsed(Boolean inUsed) {
+        this.inUsed = inUsed;
     }
 }

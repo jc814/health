@@ -4,8 +4,10 @@ package hzy.serviceImpl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import hzy.dao.ManageMapper;
 import hzy.dao.ScheduleMapper;
 import hzy.dao.WorkShiftMapper;
+import hzy.entity.Manage;
 import hzy.entity.Schedule;
 import hzy.entity.WorkShift;
 import hzy.service.IWorkShiftSer;
@@ -30,6 +32,9 @@ public class WorkShiftSer extends BaseSer<WorkShift> implements IWorkShiftSer {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
+    @Autowired
+    private ManageMapper manageMapper;
+
     @Override
     public int insertRecord(WorkShift record) {
         int flag = 0;
@@ -52,10 +57,19 @@ public class WorkShiftSer extends BaseSer<WorkShift> implements IWorkShiftSer {
 
     @Override
     public Page<WorkShift> selectAllRecord(WorkShift record, int currentPage, int pageSize) {
+        Manage manage = null;
         Page<WorkShift> page = PageHelper.startPage(currentPage, pageSize);
         workShiftMapper.selectAllRecord(record);
         for(WorkShift w : page.getResult()){
             List<Schedule> scheduleList = scheduleMapper.selectByWid(w.getId());
+            manage = new Manage();
+            manage.setWid(w.getId());
+            List<Manage> manageList = manageMapper.selectAllRecord(manage);
+            if(manageList != null && manageList.size() > 0){
+                w.setInUsed(true);
+            } else {
+                w.setInUsed(false);
+            }
             w.setSchedules(scheduleList);
             w.setScheduleCount(scheduleList.size());
         }

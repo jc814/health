@@ -49,19 +49,16 @@ public class ManageController {
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
     @ResponseBody
-    private int insertRecord(Integer wid, String persons){
+    private int insertRecord(Integer wid, String delDoctors){
         int result = 0;
         Manage manage = null;
-        List<Manage> manages = new ArrayList<Manage>();
-        if(NumberUtils.isNumber(persons)){
-            String []personList = persons.split(",");
+        List<Integer> manages = new ArrayList<Integer>();
+        if(NumberUtils.isNumber(delDoctors)){
+            String []personList = delDoctors.split(",");
             for(String doctorId : personList){
-                manage = new Manage();
-                manage.setWid(wid);
-                manage.setDid(Integer.parseInt(doctorId));
-                manages.add(manage);
+                manages.add(Integer.parseInt(doctorId));
             }
-            result = manageSer.insertManyRecord(manages);
+            result = manageSer.judgeOption(wid, manages);
         }else{
             result = 0;
         }
