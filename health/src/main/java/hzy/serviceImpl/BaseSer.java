@@ -39,6 +39,12 @@ public class BaseSer<T> implements IBaseSer<T>{
     }
 
     @Override
+    public int insertRecordSelective(T record) {
+        int result = baseMapper.insertSelective(record);
+        return result;
+    }
+
+    @Override
     public int deleteRecord(Integer id) {
         int result = baseMapper.deleteByPrimaryKey(id);
         return result;

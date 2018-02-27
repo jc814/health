@@ -413,4 +413,23 @@
       d28 = #{d28,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllRecord" parameterType="hzy.entity.Manage" resultMap="BaseResultMap">
+    SELECT
+      *
+    FROM
+      manage
+    <where>
+      <if test="wid != null">
+        wid = #{wid}
+      </if>
+    </where>
+  </select>
+
+  <delete id="deleteByDid" parameterType="java.lang.Integer">
+    DELETE FROM
+      manage
+    WHERE
+      did = #{did}
+  </delete>
 </mapper>

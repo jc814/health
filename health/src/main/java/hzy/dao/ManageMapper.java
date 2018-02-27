@@ -10,5 +10,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ManageMapper extends BaseMapper<Manage> {
-
+    /**
+     * 根据医生id删除记录
+     * @param did
+     * @return
+     */
+    int deleteByDid(Integer did);
 }

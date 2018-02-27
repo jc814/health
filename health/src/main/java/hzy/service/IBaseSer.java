@@ -33,6 +33,13 @@ public interface IBaseSer<T> {
     int insertRecord(T record);
 
     /**
+     * 添加一条新记录(选择性)
+     * @param record
+     * @return
+     */
+    int insertRecordSelective(T record);
+
+    /**
      * 删除一条新记录
      * @param id
      * @return

@@ -2,6 +2,9 @@ package hzy.entity;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class WorkShift {
     private Integer id;
 
@@ -22,6 +25,8 @@ public class WorkShift {
     private Short sat;
 
     private Short sun;
+
+    private String dids;
 
     private List<Schedule> schedules;
 
@@ -121,5 +126,13 @@ public class WorkShift {
 
     public void setScheduleCount(Integer scheduleCount) {
         this.scheduleCount = scheduleCount;
+    }
+
+    public String getDids() {
+        return dids;
+    }
+
+    public void setDids(String dids) {
+        this.dids = dids;
     }
 }

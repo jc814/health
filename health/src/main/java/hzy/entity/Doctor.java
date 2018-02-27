@@ -1,5 +1,7 @@
 package hzy.entity;
 
+import java.util.List;
+
 public class Doctor {
     private Integer id;
 
@@ -20,6 +22,8 @@ public class Doctor {
     private String officeName;
 
     private Integer hid;
+
+    private List<Integer> useInManage;
 
     public Integer getId() {
         return id;
@@ -99,5 +103,13 @@ public class Doctor {
 
     public void setHid(Integer hid) {
         this.hid = hid;
+    }
+
+    public List<Integer> getUseInManage() {
+        return useInManage;
+    }
+
+    public void setUseInManage(List<Integer> useInManage) {
+        this.useInManage = useInManage;
     }
 }

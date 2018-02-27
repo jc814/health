@@ -150,6 +150,12 @@
       <if test="hid != null">
         AND o.hid = #{hid}
       </if>
+      <if test="useInManage != null and useInManage.size() > 0">
+        and d.id NOT IN
+        <foreach collection="useInManage" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+        </foreach>
+      </if>
     </where>
   </select>
 </mapper>
