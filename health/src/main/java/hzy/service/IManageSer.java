@@ -26,4 +26,12 @@ public interface IManageSer extends IBaseSer<Manage>{
      * @return
      */
     int judgeOption(Integer wid, List<Integer> doctorsId);
+
+    /**
+     * 判断并执行增删
+     * @param wid
+     * @param doctorsId
+     * @return
+     */
+    int manageCreate(Integer wid, List<Integer> doctorsId);
 }

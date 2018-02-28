@@ -13,6 +13,8 @@ public class Bespeak {
 
     private Date bespeakTime;
 
+    private Integer num;
+
     public Integer getId() {
         return id;
     }

@@ -19,6 +19,8 @@ public class Doctor {
 
     private String photo;
 
+    private Integer span;
+
     private String officeName;
 
     private Integer hid;
@@ -111,5 +113,13 @@ public class Doctor {
 
     public void setUseInManage(List<Integer> useInManage) {
         this.useInManage = useInManage;
+    }
+
+    public Integer getSpan() {
+        return span;
+    }
+
+    public void setSpan(Integer span) {
+        this.span = span;
     }
 }
