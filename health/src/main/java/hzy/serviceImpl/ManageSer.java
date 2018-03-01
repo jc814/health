@@ -78,6 +78,7 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
 
     @Override
     public int manageCreate(Integer wid, List<Integer> doctorsId) {
+
         return 0;
     }
 
