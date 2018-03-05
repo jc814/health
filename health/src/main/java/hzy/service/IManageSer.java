@@ -29,9 +29,7 @@ public interface IManageSer extends IBaseSer<Manage>{
 
     /**
      * 判断并执行增删
-     * @param wid
-     * @param doctorsId
      * @return
      */
-    int manageCreate(Integer wid, List<Integer> doctorsId);
+    int manageCreate();
 }

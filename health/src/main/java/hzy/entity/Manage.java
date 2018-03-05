@@ -11,6 +11,8 @@ public class Manage {
 
     private Integer did;
 
+    private String dids;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Manage {
 
     public void setDid(Integer did) {
         this.did = did;
+    }
+
+    public String getDids() {
+        return dids;
+    }
+
+    public void setDids(String dids) {
+        this.dids = dids;
     }
 }

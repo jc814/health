@@ -53,6 +53,9 @@ public class ManageController {
         int result = 0;
         Manage manage = null;
         List<Integer> manages = new ArrayList<Integer>();
+        if(delDoctors != null && !"".equals(delDoctors)){
+
+        }
         if(NumberUtils.isNumber(delDoctors)){
             String []personList = delDoctors.split(",");
             for(String doctorId : personList){
@@ -69,6 +72,13 @@ public class ManageController {
     @ResponseBody
     private int deleteRecord(Integer id){
         int result = manageSer.deleteRecord(id);
+        return result;
+    }
+
+    @RequestMapping(value = "/manageCreate", method = RequestMethod.POST)
+    @ResponseBody
+    private int manageCreate(Integer mid){
+        int result = manageSer.manageCreate();
         return result;
     }
 }

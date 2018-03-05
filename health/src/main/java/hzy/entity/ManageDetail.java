@@ -11,6 +11,8 @@ public class ManageDetail {
 
     private Date time;
 
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class ManageDetail {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

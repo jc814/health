@@ -6,9 +6,10 @@
     <result column="mid" jdbcType="INTEGER" property="mid" />
     <result column="wid" jdbcType="INTEGER" property="wid" />
     <result column="time" jdbcType="DATE" property="time" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, mid, wid, time
+    id, mid, wid, time, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="hzy.entity.ManageDetail">
     insert into manage_detail (id, mid, wid, 
-      time)
+      time, status)
     values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, 
-      #{time,jdbcType=DATE})
+      #{time,jdbcType=DATE}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="hzy.entity.ManageDetail">
     insert into manage_detail
@@ -41,6 +42,9 @@
       <if test="time != null">
         time,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="time != null">
         #{time,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="time != null">
         time = #{time,jdbcType=DATE},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,32 @@
     update manage_detail
     set mid = #{mid,jdbcType=INTEGER},
       wid = #{wid,jdbcType=INTEGER},
-      time = #{time,jdbcType=DATE}
-    where id = #{id,jdbcType=INTEGER}
+      time = #{time,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER}
+    where
+      id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectRecordByTime" resultMap="BaseResultMap">
+    SELECT
+      *
+    FROM
+      manage_detail md
+    WHERE
+      md.mid = #{mid}
+    AND
+      md.time = #{time}
+  </select>
+
+  <delete id="deleteByMid">
+    DELETE FROM
+      manage_detail md
+    WHERE
+      md.mid = #{mid}
+    AND
+    <![CDATA[
+      DATE_FORMAT(md.time,'%Y-%m-%d') >= DATE_FORMAT(#{time},'%Y-%m-%d')
+    ]]>
+  </delete>
+
 </mapper>

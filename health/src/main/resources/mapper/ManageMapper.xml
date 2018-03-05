@@ -108,5 +108,17 @@
       manage
     WHERE
       did = #{did}
+    AND
+      wid = #{wid}
   </delete>
+
+  <select id="selectRecordGroupById" parameterType="hzy.entity.Manage" resultMap="BaseResultMap">
+    SELECT
+      *,
+      group_concat(did) as dids
+    FROM
+      manage
+    GROUP BY
+      id
+  </select>
 </mapper>
