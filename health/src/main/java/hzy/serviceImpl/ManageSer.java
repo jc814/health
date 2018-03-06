@@ -100,7 +100,6 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setFirstDayOfWeek(Calendar.MONDAY);
                 calendar.add(Calendar.MONTH, 0);
-                calendar.set(Calendar.DAY_OF_MONTH,1);
                 Manage manage = manageMapper.selectByPrimaryKey(m.getId());
                 WorkShift workShift = workShiftMapper.selectByPrimaryKey(manage.getWid());
                 if(workShift == null || m.getDids() == null || "".equals(m.getDids())){
@@ -115,11 +114,9 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
                     weeks[5] = workShift.getFri() == null ? 0 : workShift.getFri();
                     weeks[6] = workShift.getSat() == null ? 0 : workShift.getSat();
                     weeks[0] = workShift.getSun() == null ? 0 : workShift.getSun();
-
-
                     //当月有几天
                     int dayCount = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-                    for (int i = 0; i < dayCount; i++){
+                    for (int i = calendar.get(Calendar.DAY_OF_MONTH) + 1; i < dayCount; i++){
                         manageDetail = new ManageDetail();
                         manageDetail.setMid(manage.getId());
                         manageDetail.setWid(workShift.getId());

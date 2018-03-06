@@ -2,6 +2,7 @@ package hzy.controller;
 
 import com.github.pagehelper.Page;
 import hzy.entity.Manage;
+import hzy.service.IManageDetailSer;
 import hzy.service.IManageSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class ManageController {
     @Autowired
     private IManageSer manageSer;
 
+    @Autowired
+    private IManageDetailSer manageDetailSer;
+
     @RequestMapping("selectAllRecord")
     @ResponseBody
     public Result selectAllRecord(Manage record, int currentPage, int pageSize){
@@ -49,12 +53,13 @@ public class ManageController {
 
     @RequestMapping(value = "/insertRecord", method = RequestMethod.POST)
     @ResponseBody
-    private int insertRecord(Integer wid, String delDoctors){
+    private int insertRecord(Integer wid, Integer mid, String delDoctors){
         int result = 0;
         Manage manage = null;
         List<Integer> manages = new ArrayList<Integer>();
-        if(delDoctors != null && !"".equals(delDoctors)){
-
+        if(delDoctors == null || "".equals(delDoctors)){
+            result = manageDetailSer.deleteByMid(mid);
+            return result;
         }
         if(NumberUtils.isNumber(delDoctors)){
             String []personList = delDoctors.split(",");
