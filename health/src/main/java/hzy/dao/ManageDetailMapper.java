@@ -29,5 +29,5 @@ public interface ManageDetailMapper extends BaseMapper<ManageDetail>{
      * @param time
      * @return
      */
-    int deleteByMid(Integer mid, Date time);
+    int deleteByMid(@Param("mid") Integer mid, @Param("time") Date time);
 }

@@ -32,4 +32,12 @@ public interface IManageSer extends IBaseSer<Manage>{
      * @return
      */
     int manageCreate();
+
+    /**
+     * 根据wid删除记录
+     * @param wid
+     * @param mid
+     * @return
+     */
+    int deleteByWid(Integer wid, Integer mid);
 }

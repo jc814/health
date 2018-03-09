@@ -28,4 +28,11 @@ public interface ManageMapper extends BaseMapper<Manage> {
      */
     List<Manage> selectRecordGroupById();
 
+    /**
+     * 根据wid删除记录
+     * @param wid
+     * @return
+     */
+    int deleteByWid(Integer wid);
+
 }

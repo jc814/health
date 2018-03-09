@@ -105,12 +105,12 @@
 
   <delete id="deleteByMid">
     DELETE FROM
-      manage_detail md
+      manage_detail
     WHERE
-      md.mid = #{mid}
+      mid = #{mid}
     AND
     <![CDATA[
-      DATE_FORMAT(md.time,'%Y-%m-%d') >= DATE_FORMAT(#{time},'%Y-%m-%d')
+      DATE_FORMAT(time,'%Y-%m-%d') >= DATE_FORMAT(#{time},'%Y-%m-%d')
     ]]>
   </delete>
 

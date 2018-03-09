@@ -58,7 +58,7 @@ public class ManageController {
         Manage manage = null;
         List<Integer> manages = new ArrayList<Integer>();
         if(delDoctors == null || "".equals(delDoctors)){
-            result = manageDetailSer.deleteByMid(mid);
+            result = manageSer.deleteByWid(wid, mid);
             return result;
         }
         if(NumberUtils.isNumber(delDoctors)){

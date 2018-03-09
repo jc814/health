@@ -121,4 +121,11 @@
     GROUP BY
       id
   </select>
+
+  <delete id="deleteByWid" parameterType="java.lang.Integer">
+    DELETE FROM
+      manage
+    WHERE
+      wid = #{wid}
+  </delete>
 </mapper>

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -116,7 +117,8 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
                     weeks[0] = workShift.getSun() == null ? 0 : workShift.getSun();
                     //当月有几天
                     int dayCount = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-                    for (int i = calendar.get(Calendar.DAY_OF_MONTH) + 1; i < dayCount; i++){
+                    for (int i = calendar.get(Calendar.DAY_OF_MONTH) + 1; i <= dayCount; i++){
+                        calendar.add(Calendar.DATE, 1);
                         manageDetail = new ManageDetail();
                         manageDetail.setMid(manage.getId());
                         manageDetail.setWid(workShift.getId());
@@ -125,7 +127,7 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
                         int week = calendar.get(Calendar.DAY_OF_WEEK) - 1  ;
                         manageDetail.setStatus(weeks[week]);
                         manageDetailMapper.insert(manageDetail);
-                        calendar.add(Calendar.DATE, 1);
+
                     }
                 }
             }
@@ -138,4 +140,17 @@ public class ManageSer extends BaseSer<Manage> implements IManageSer {
         return result;
     }
 
+    @Override
+    public int deleteByWid(Integer wid, Integer mid) {
+        int flag = 0;
+        try {
+            int result2 = manageDetailMapper.deleteByMid(mid,new Date());
+            int result1 = manageMapper.deleteByWid(wid);
+            flag = (result1 == 1 && result2 == 1) ? 1 : 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            flag = 0;
+        }
+        return flag;
+    }
 }
